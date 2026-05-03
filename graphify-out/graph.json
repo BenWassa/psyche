@@ -155,7 +155,7 @@
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/vite.config.ts",
       "source_location": "L1",
       "id": "users_benjaminhaddon_github_repos_psyche_vite_config_ts",
-      "community": 12,
+      "community": 19,
       "norm_label": "vite.config.ts"
     },
     {
@@ -168,22 +168,40 @@
       "norm_label": "app.tsx"
     },
     {
+      "label": "applyTheme()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
+      "source_location": "L30",
+      "id": "app_applytheme",
+      "community": 8,
+      "norm_label": "applytheme()"
+    },
+    {
+      "label": "toggleTheme()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
+      "source_location": "L40",
+      "id": "app_toggletheme",
+      "community": 8,
+      "norm_label": "toggletheme()"
+    },
+    {
       "label": "openDomain()",
       "file_type": "code",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L189",
+      "source_location": "L45",
       "id": "app_opendomain",
       "community": 8,
       "norm_label": "opendomain()"
     },
     {
-      "label": "openInspector()",
+      "label": "ActionRow()",
       "file_type": "code",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L388",
-      "id": "app_openinspector",
+      "source_location": "L202",
+      "id": "app_actionrow",
       "community": 8,
-      "norm_label": "openinspector()"
+      "norm_label": "actionrow()"
     },
     {
       "label": "main.tsx",
@@ -191,8 +209,17 @@
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/main.tsx",
       "source_location": "L1",
       "id": "users_benjaminhaddon_github_repos_psyche_src_main_tsx",
-      "community": 13,
+      "community": 20,
       "norm_label": "main.tsx"
+    },
+    {
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/types.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_types_ts",
+      "community": 21,
+      "norm_label": "types.ts"
     },
     {
       "label": "vite-env.d.ts",
@@ -200,8 +227,332 @@
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/vite-env.d.ts",
       "source_location": "L1",
       "id": "users_benjaminhaddon_github_repos_psyche_src_vite_env_d_ts",
-      "community": 14,
+      "community": 22,
       "norm_label": "vite-env.d.ts"
+    },
+    {
+      "label": "RelationshipsTheory.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/RelationshipsTheory.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_domains_relationshipstheory_tsx",
+      "community": 23,
+      "norm_label": "relationshipstheory.tsx"
+    },
+    {
+      "label": "CognitionTheory.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/CognitionTheory.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_domains_cognitiontheory_tsx",
+      "community": 24,
+      "norm_label": "cognitiontheory.tsx"
+    },
+    {
+      "label": "MotivationTheory.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/MotivationTheory.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_domains_motivationtheory_tsx",
+      "community": 25,
+      "norm_label": "motivationtheory.tsx"
+    },
+    {
+      "label": "EmotionTheory.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/EmotionTheory.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_domains_emotiontheory_tsx",
+      "community": 26,
+      "norm_label": "emotiontheory.tsx"
+    },
+    {
+      "label": "PersonalityTheory.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/PersonalityTheory.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_domains_personalitytheory_tsx",
+      "community": 12,
+      "norm_label": "personalitytheory.tsx"
+    },
+    {
+      "label": "PersonalityTheory()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/PersonalityTheory.tsx",
+      "source_location": "L6",
+      "id": "personalitytheory_personalitytheory",
+      "community": 12,
+      "norm_label": "personalitytheory()"
+    },
+    {
+      "label": "SelfTheory.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/SelfTheory.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_domains_selftheory_tsx",
+      "community": 27,
+      "norm_label": "selftheory.tsx"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/index.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_domains_index_ts",
+      "community": 28,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "EvidenceCard.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/EvidenceCard.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_evidencecard_tsx",
+      "community": 29,
+      "norm_label": "evidencecard.tsx"
+    },
+    {
+      "label": "InstallPrompt.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/InstallPrompt.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_installprompt_tsx",
+      "community": 10,
+      "norm_label": "installprompt.tsx"
+    },
+    {
+      "label": "InstallPrompt()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/InstallPrompt.tsx",
+      "source_location": "L3",
+      "id": "installprompt_installprompt",
+      "community": 10,
+      "norm_label": "installprompt()"
+    },
+    {
+      "label": "UpdateNotification.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/UpdateNotification.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_updatenotification_tsx",
+      "community": 9,
+      "norm_label": "updatenotification.tsx"
+    },
+    {
+      "label": "UpdateNotification()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/UpdateNotification.tsx",
+      "source_location": "L3",
+      "id": "updatenotification_updatenotification",
+      "community": 9,
+      "norm_label": "updatenotification()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/index.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_index_ts",
+      "community": 30,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "TheoryTileHeader.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/ui/TheoryTileHeader.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_ui_theorytileheader_tsx",
+      "community": 31,
+      "norm_label": "theorytileheader.tsx"
+    },
+    {
+      "label": "FacetPill.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/ui/FacetPill.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_ui_facetpill_tsx",
+      "community": 11,
+      "norm_label": "facetpill.tsx"
+    },
+    {
+      "label": "FacetPill()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/ui/FacetPill.tsx",
+      "source_location": "L3",
+      "id": "facetpill_facetpill",
+      "community": 11,
+      "norm_label": "facetpill()"
+    },
+    {
+      "label": "FacetPills()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/ui/FacetPill.tsx",
+      "source_location": "L11",
+      "id": "facetpill_facetpills",
+      "community": 11,
+      "norm_label": "facetpills()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/ui/index.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_ui_index_ts",
+      "community": 32,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "BottomNavItem.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/nav/BottomNavItem.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_nav_bottomnavitem_tsx",
+      "community": 13,
+      "norm_label": "bottomnavitem.tsx"
+    },
+    {
+      "label": "BottomNavItem()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/nav/BottomNavItem.tsx",
+      "source_location": "L3",
+      "id": "bottomnavitem_bottomnavitem",
+      "community": 13,
+      "norm_label": "bottomnavitem()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/nav/index.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_nav_index_ts",
+      "community": 33,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "SidebarItem.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/nav/SidebarItem.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_components_nav_sidebaritem_tsx",
+      "community": 14,
+      "norm_label": "sidebaritem.tsx"
+    },
+    {
+      "label": "SidebarItem()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/nav/SidebarItem.tsx",
+      "source_location": "L3",
+      "id": "sidebaritem_sidebaritem",
+      "community": 14,
+      "norm_label": "sidebaritem()"
+    },
+    {
+      "label": "useInstallPrompt.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/hooks/useInstallPrompt.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_hooks_useinstallprompt_ts",
+      "community": 10,
+      "norm_label": "useinstallprompt.ts"
+    },
+    {
+      "label": "useInstallPrompt()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/hooks/useInstallPrompt.ts",
+      "source_location": "L16",
+      "id": "useinstallprompt_useinstallprompt",
+      "community": 10,
+      "norm_label": "useinstallprompt()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/hooks/index.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_hooks_index_ts",
+      "community": 34,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "useServiceWorker.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/hooks/useServiceWorker.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_hooks_useserviceworker_ts",
+      "community": 9,
+      "norm_label": "useserviceworker.ts"
+    },
+    {
+      "label": "useServiceWorker()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/hooks/useServiceWorker.ts",
+      "source_location": "L9",
+      "id": "useserviceworker_useserviceworker",
+      "community": 9,
+      "norm_label": "useserviceworker()"
+    },
+    {
+      "label": "inspectorCopy.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/data/inspectorCopy.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_data_inspectorcopy_ts",
+      "community": 35,
+      "norm_label": "inspectorcopy.ts"
+    },
+    {
+      "label": "domains.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/data/domains.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_data_domains_ts",
+      "community": 36,
+      "norm_label": "domains.ts"
+    },
+    {
+      "label": "EncyclopediaView.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/views/EncyclopediaView.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_views_encyclopediaview_tsx",
+      "community": 37,
+      "norm_label": "encyclopediaview.tsx"
+    },
+    {
+      "label": "DomainIndexView.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/views/DomainIndexView.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_views_domainindexview_tsx",
+      "community": 38,
+      "norm_label": "domainindexview.tsx"
+    },
+    {
+      "label": "TheoryView.tsx",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/views/TheoryView.tsx",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_views_theoryview_tsx",
+      "community": 15,
+      "norm_label": "theoryview.tsx"
+    },
+    {
+      "label": "openInspector()",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/views/TheoryView.tsx",
+      "source_location": "L10",
+      "id": "theoryview_openinspector",
+      "community": 15,
+      "norm_label": "openinspector()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/views/index.ts",
+      "source_location": "L1",
+      "id": "users_benjaminhaddon_github_repos_psyche_src_views_index_ts",
+      "community": 39,
+      "norm_label": "index.ts"
     },
     {
       "label": "Psyche Psychology Literacy App",
@@ -212,7 +563,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "psyche psychology literacy app",
       "id": "psyche_app"
     },
@@ -238,7 +589,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "self-determination theory",
       "id": "sdt"
     },
@@ -251,7 +602,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "adult attachment theory (dimensional)",
       "id": "adult_attachment_dimensional"
     },
@@ -264,7 +615,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "emotion regulation process model",
       "id": "emotion_regulation_gross"
     },
@@ -277,7 +628,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "dual process theory",
       "id": "dual_process_theory"
     },
@@ -290,7 +641,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "heuristics & biases framework",
       "id": "heuristics_biases"
     },
@@ -303,7 +654,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "cognitive behavioral model",
       "id": "cognitive_behavioral_model"
     },
@@ -316,7 +667,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "appraisal theory",
       "id": "appraisal_theory"
     },
@@ -368,7 +719,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 9,
+      "community": 16,
       "norm_label": "social identity theory",
       "id": "social_identity_theory"
     },
@@ -381,7 +732,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 9,
+      "community": 16,
       "norm_label": "social comparison theory",
       "id": "social_comparison_theory"
     },
@@ -394,7 +745,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "replication crisis in psychology",
       "id": "replication_crisis"
     },
@@ -407,7 +758,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "domain convergence finding",
       "id": "domain_convergence"
     },
@@ -420,7 +771,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 10,
+      "community": 17,
       "norm_label": "structural type taxonomy",
       "id": "structural_type_taxonomy"
     },
@@ -433,7 +784,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 10,
+      "community": 17,
       "norm_label": "12 visual grammar types",
       "id": "visual_grammar_system"
     },
@@ -498,7 +849,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "cognition & judgment domain",
       "id": "cognition_domain"
     },
@@ -511,7 +862,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "relationships & attachment domain",
       "id": "relationships_domain"
     },
@@ -524,7 +875,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "emotion & emotion regulation domain",
       "id": "emotion_domain"
     },
@@ -563,7 +914,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "attachment anxiety axis",
       "id": "attachment_anxiety_axis"
     },
@@ -576,7 +927,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "attachment avoidance axis",
       "id": "attachment_avoidance_axis"
     },
@@ -589,7 +940,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "cognitive reappraisal strategy",
       "id": "reappraisal_strategy"
     },
@@ -602,7 +953,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "expressive suppression strategy",
       "id": "suppression_strategy"
     },
@@ -615,7 +966,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "bowlby's attachment theory",
       "id": "bowlby_attachment"
     },
@@ -628,7 +979,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "four attachment styles model",
       "id": "four_attachment_styles"
     },
@@ -641,7 +992,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 15,
+      "community": 40,
       "norm_label": "constructed emotion theory",
       "id": "constructed_emotion_theory"
     },
@@ -654,7 +1005,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "research synthesis & analysis",
       "id": "research_synthesis"
     },
@@ -667,7 +1018,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 0,
       "norm_label": "cornerstone theories concept",
       "id": "cornerstone_theories"
     },
@@ -771,7 +1122,7 @@
       "captured_at": null,
       "author": "Higgins",
       "contributor": null,
-      "community": 11,
+      "community": 18,
       "norm_label": "regulatory focus theory (higgins)",
       "id": "motivation_regulatory_focus"
     },
@@ -784,7 +1135,7 @@
       "captured_at": null,
       "author": "Vroom",
       "contributor": null,
-      "community": 16,
+      "community": 41,
       "norm_label": "expectancy theory (vroom)",
       "id": "motivation_expectancy"
     },
@@ -992,7 +1343,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 17,
+      "community": 42,
       "norm_label": "mastery experience (self-efficacy source)",
       "id": "se_mastery_experience"
     },
@@ -1005,7 +1356,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 18,
+      "community": 43,
       "norm_label": "vicarious experience (self-efficacy source)",
       "id": "se_vicarious_experience"
     },
@@ -1018,7 +1369,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 19,
+      "community": 44,
       "norm_label": "verbal persuasion (self-efficacy source)",
       "id": "se_verbal_persuasion"
     },
@@ -1031,7 +1382,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 45,
       "norm_label": "physiological & emotional states (self-efficacy source)",
       "id": "se_phys_emotional_states"
     },
@@ -1460,7 +1811,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 21,
+      "community": 46,
       "norm_label": "self-efficacy as mediator of goal pursuit",
       "id": "goal_setting_self_efficacy_mediation"
     },
@@ -1473,7 +1824,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 18,
       "norm_label": "promotion focus",
       "id": "regulatory_focus_promotion"
     },
@@ -1486,7 +1837,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 47,
       "norm_label": "prevention focus",
       "id": "regulatory_focus_prevention"
     },
@@ -1522,7 +1873,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L189",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
+      "_tgt": "app_applytheme",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
+      "target": "app_applytheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
+      "_tgt": "app_toggletheme",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
+      "target": "app_toggletheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
+      "source_location": "L45",
       "weight": 1.0,
       "_src": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
       "_tgt": "app_opendomain",
@@ -1534,12 +1909,168 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L388",
+      "source_location": "L202",
       "weight": 1.0,
       "_src": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "_tgt": "app_openinspector",
+      "_tgt": "app_actionrow",
       "source": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "target": "app_openinspector",
+      "target": "app_actionrow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "app_toggletheme",
+      "_tgt": "app_applytheme",
+      "source": "app_applytheme",
+      "target": "app_toggletheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/domains/PersonalityTheory.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_domains_personalitytheory_tsx",
+      "_tgt": "personalitytheory_personalitytheory",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_domains_personalitytheory_tsx",
+      "target": "personalitytheory_personalitytheory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/InstallPrompt.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_components_installprompt_tsx",
+      "_tgt": "installprompt_installprompt",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_components_installprompt_tsx",
+      "target": "installprompt_installprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/InstallPrompt.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "installprompt_installprompt",
+      "_tgt": "useinstallprompt_useinstallprompt",
+      "source": "installprompt_installprompt",
+      "target": "useinstallprompt_useinstallprompt"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/UpdateNotification.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_components_updatenotification_tsx",
+      "_tgt": "updatenotification_updatenotification",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_components_updatenotification_tsx",
+      "target": "updatenotification_updatenotification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/UpdateNotification.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "updatenotification_updatenotification",
+      "_tgt": "useserviceworker_useserviceworker",
+      "source": "updatenotification_updatenotification",
+      "target": "useserviceworker_useserviceworker"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/ui/FacetPill.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_components_ui_facetpill_tsx",
+      "_tgt": "facetpill_facetpill",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_components_ui_facetpill_tsx",
+      "target": "facetpill_facetpill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/ui/FacetPill.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_components_ui_facetpill_tsx",
+      "_tgt": "facetpill_facetpills",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_components_ui_facetpill_tsx",
+      "target": "facetpill_facetpills",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/nav/BottomNavItem.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_components_nav_bottomnavitem_tsx",
+      "_tgt": "bottomnavitem_bottomnavitem",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_components_nav_bottomnavitem_tsx",
+      "target": "bottomnavitem_bottomnavitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/components/nav/SidebarItem.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_components_nav_sidebaritem_tsx",
+      "_tgt": "sidebaritem_sidebaritem",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_components_nav_sidebaritem_tsx",
+      "target": "sidebaritem_sidebaritem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/hooks/useInstallPrompt.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_hooks_useinstallprompt_ts",
+      "_tgt": "useinstallprompt_useinstallprompt",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_hooks_useinstallprompt_ts",
+      "target": "useinstallprompt_useinstallprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/hooks/useServiceWorker.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_hooks_useserviceworker_ts",
+      "_tgt": "useserviceworker_useserviceworker",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_hooks_useserviceworker_ts",
+      "target": "useserviceworker_useserviceworker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/views/TheoryView.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "users_benjaminhaddon_github_repos_psyche_src_views_theoryview_tsx",
+      "_tgt": "theoryview_openinspector",
+      "source": "users_benjaminhaddon_github_repos_psyche_src_views_theoryview_tsx",
+      "target": "theoryview_openinspector",
       "confidence_score": 1.0
     },
     {

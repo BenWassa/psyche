@@ -4,7 +4,7 @@ import { DOMAIN_SEQUENCE } from '@/data/domains';
 
 export default function DomainIndexView({ selectedDomain, onOpenDomain }: { selectedDomain: DomainId; onOpenDomain: (domain: DomainId) => void }) {
   return (
-    <div className="flex flex-col gap-6 sm:gap-8 h-full pb-nav-safe">
+    <div className="flex flex-col gap-6 sm:gap-8 h-full">
       <div className="mb-2 border-b border-outline-variant/50 pb-6 sm:pb-8">
         <p className="panel-tag text-primary mb-3">Domain index</p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-light mb-4 text-on-surface">Six Domains</h1>

@@ -53,7 +53,7 @@ export default function App() {
       {currentView === 'encyclopedia' && <EncyclopediaView onEnter={() => setCurrentView('domains')} />}
 
       {currentView !== 'encyclopedia' && (
-        <div className="h-screen w-full flex overflow-hidden bg-transparent">
+        <div className="h-[100dvh] w-full flex overflow-hidden bg-transparent">
           <aside className="hidden md:flex h-full w-[288px] border-r border-outline-variant bg-surface/70 backdrop-blur-xl flex-col z-[60] shrink-0">
             <div className="px-6 py-8 border-b border-outline-variant/70">
               <h1 className="text-xl font-medium text-on-surface tracking-[0.22em] font-display uppercase">Psyche Map</h1>
@@ -90,8 +90,8 @@ export default function App() {
               </button>
             </header>
 
-            <main className="flex-1 overflow-y-auto p-5 sm:p-8 md:p-10 lg:p-12">
-              <div className={`${currentView === 'settings' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto h-full`}>
+            <main className="flex-1 overflow-y-auto p-5 sm:p-8 md:p-10 lg:p-12 pb-nav-safe">
+              <div className={`${currentView === 'settings' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto`}>
                 {currentView === 'domains' && <DomainIndexView onOpenDomain={openDomain} selectedDomain={selectedDomain} />}
                 {currentView === 'theory' && <TheoryView domain={selectedDomain} onBack={() => setCurrentView('domains')} onOpenDomain={openDomain} />}
                 {currentView === 'settings' && <SettingsView theme={theme} onThemeChange={toggleTheme} />}

@@ -2,7 +2,7 @@ import React from 'react';
 
 export function FacetPill({ label, tone = 'default' }: { label: string; tone?: 'default' | 'primary' }) {
   return (
-    <span className={`rounded-full border px-3 py-2 text-[12px] mono-label text-center ${tone === 'primary' ? 'border-primary/40 bg-primary-container/20 text-on-surface' : 'border-outline-variant bg-surface-dim/35 text-on-surface-variant'}`}>
+    <span className={`inline-flex items-center justify-center rounded-full border px-2.5 py-1 text-[11px] mono-label ${tone === 'primary' ? 'border-primary/40 bg-primary-container/20 text-on-surface' : 'border-outline-variant bg-surface-dim/35 text-on-surface-variant'}`}>
       {label}
     </span>
   );
