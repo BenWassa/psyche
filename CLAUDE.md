@@ -34,7 +34,7 @@ No test suite exists. Type checking is the only automated quality gate.
 
 ## Architecture
 
-**Single-file app** — all UI logic lives in [src/App.tsx](src/App.tsx). No `components/` directory yet. All content/copy is hardcoded inline.
+**Single-file app** — all UI logic lives in [src/App.tsx](src/App.tsx). PWA components extracted to `src/components/` (InstallPrompt, UpdateNotification). All content/copy is hardcoded inline.
 
 **Routing** is a `useState<ViewMode>` — no router library. Four views: `encyclopedia` → `domains` → `theory` → `settings`.
 
@@ -73,26 +73,34 @@ App
 
 **Do not deviate without explicit instruction.**
 
-The palette is **Star Atlas v2** (midnight canvas, gold accent):
+The palette is **Empathetic Editorial v4.0** (warm paper, terracotta accent):
 
 | Token | Value | Use |
 |---|---|---|
-| `--color-surface` | `#0a0f1e` | Body background |
-| `--color-surface-dim` | `#111a31` | Recessed surface |
-| `--color-surface-bright` | `#15213a` | Panel/card background |
-| `--color-primary` | `#c49a3c` | Gold — active states only |
-| `--color-on-surface` | `#f2eadb` | Primary text |
-| `--color-on-surface-variant` | `#b7b0a1` | Secondary text |
-| `--color-outline-variant` | `#22304f` | Borders |
+| `--color-surface` | `#f9f8f6` | Body background (warm off-white) |
+| `--color-surface-dim` | `#f0efe9` | Recessed / inset backgrounds |
+| `--color-surface-bright` | `#ffffff` | Cards, panels (highest elevation) |
+| `--color-primary` | `#a65d57` | Terracotta — active states only |
+| `--color-primary-container` | `#ecd9d7` | Soft highlight backgrounds |
+| `--color-on-surface` | `#2c2c2a` | Primary text (warm charcoal) |
+| `--color-on-surface-variant` | `#5c5c5a` | Secondary text, metadata |
+| `--color-outline` | `#8c8c8a` | Strong borders/dividers |
+| `--color-outline-variant` | `#d6d5cf` | Faint structural lines |
+
+**Domain accent washes (5–10% opacity backgrounds or tags only — never loud fills):**
+- `--color-domain-cognition: #6b7f8c` (slate blue)
+- `--color-domain-self: #7a8b79` (deep sage)
+- `--color-domain-motivation: #cba36b` (burnished ochre)
+- `--color-domain-relationships: #c28f8f` (dusty rose)
 
 **Typography:**
 - Display/headings: `Fraunces` (variable weight, class `font-display`)
-- Body copy: `Newsreader` (class `font-body`)
+- Body copy: `Inter` (class `font-body`)
 - Labels/tags/mono: `DM Mono` (class `font-mono`)
 
-**Gold (`--color-primary`) is an active-state accent only** — active borders, hover states, selected indicators. Not for decorative fills.
+**Terracotta (`--color-primary`) is an active-state accent only** — active borders, hover states, selected indicators. Not for decorative fills.
 
-**Dark surfaces only.** No light panels. Inspector drawer uses `bg-surface-bright`, not white/cream.
+**Light surfaces only.** No dark panels. Inspector drawer uses `bg-surface-bright` (white) with terracotta border.
 
 ---
 
@@ -144,14 +152,15 @@ Each theory should render in its structurally honest grammar. Only type 1 is ful
 
 These are closed decisions.
 
-- **DO NOT use light/warm palette** — no `#f9f8f6` surfaces, no terracotta primary. Star Atlas v2 only.
-- **DO NOT use Inter** — body font is Newsreader, display is Fraunces.
+- **DO NOT use dark palette** — no midnight canvas, no `#0a0f1e`, no Star Atlas v2. Paper/light theme only.
+- **DO NOT use Newsreader** — body font is Inter, display is Fraunces.
 - **DO NOT build galaxy/spatial navigation** — AI tooling cannot execute it at sufficient quality. Component-based layouts only.
 - **DO NOT use top nav tabs** — wrong hierarchy for this app.
-- **DO NOT put light surfaces on panels/inspector drawers** — dark `surface-bright` with gold border only.
+- **DO NOT put dark surfaces on panels/inspector drawers** — light `surface-bright` (white) with terracotta border only.
 - **DO NOT force all theories into the same card component** — theories have different structural types, different visual grammars.
 - **DO NOT use Material Symbols icons in inspector body content** — icons only at navigation/action points.
 - **DO NOT add sidebar domains other than the real six** — Personality, Cognition, Motivation, Relationships, Emotion, Self & Identity.
+- **DO NOT use loud domain color fills** — domain accent colors at 5–10% opacity only (background washes or tags).
 
 ---
 
@@ -170,10 +179,10 @@ Load-bearing connections users should be able to follow (full list in `/content/
 
 ## Immediate Priorities (as of May 2026)
 
-1. Retheme to Star Atlas v2 — tokens already correct in `index.css`, check all component classes
-2. Fix sidebar domains — already correct in `DOMAIN_SEQUENCE`
-3. Populate domain content stubs for all six domains
-4. Evidence card component (type 12) for popular-but-revised theories
-5. Tier visual treatment — cornerstone / include / popular-but-revised need distinct visual weight
+1. ~~Retheme~~ **Done** — Paper v4.0 tokens live in `index.css`; CLAUDE.md updated
+2. Populate inspector content for domains 2–6 (wire `content/layers/*.md` into `INSPECTOR_COPY`)
+3. Evidence card component (`src/components/EvidenceCard.tsx`) for popular-but-revised theories
+4. Tier visual treatment — cornerstone / include / popular-but-revised need distinct visual weight
+5. Visual grammar completions: 2D field (Attachment), loop (CBT), duality arrows (Dual Process), timeline (Emotion Regulation), causal network (Self-Efficacy)
 
-Do not work on visual grammar types 2–12 until palette and content stubs are correct.
+Do not work on visual grammar types 2–12 until content stubs for all six domains are wired.

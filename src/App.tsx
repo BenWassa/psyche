@@ -290,11 +290,11 @@ function BottomNavItem({ icon, label, active, onClick }: { icon: string; label: 
 function EncyclopediaView({ onEnter }: { onEnter: () => void }) {
   return (
     <div className="bg-transparent text-on-surface min-h-screen flex items-center justify-center p-4 md:p-8">
-      <main className="w-full max-w-[1200px] min-h-[700px] flex flex-col md:flex-row star-surface rounded-[28px] overflow-hidden elevation-soft border border-outline-variant/70">
+      <main className="w-full max-w-[1200px] min-h-[700px] flex flex-col md:flex-row bg-surface-bright rounded-[28px] overflow-hidden elevation-soft border border-outline-variant">
         <div
-          className="flex-1 border-b md:border-b-0 md:border-r border-outline-variant/50 relative overflow-hidden min-h-[300px] md:min-h-full bg-cover bg-center"
-          style={{ backgroundImage: "linear-gradient(180deg, rgba(10,15,30,0.15), rgba(10,15,30,0.55)), url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=2400&auto=format&fit=crop')" }}
-          title="Deep-space atlas texture"
+          className="flex-1 border-b md:border-b-0 md:border-r border-outline-variant relative overflow-hidden min-h-[300px] md:min-h-full bg-cover bg-center"
+          style={{ backgroundImage: "linear-gradient(180deg, rgba(249,248,246,0.08), rgba(240,239,233,0.32)), url('https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=2400&auto=format&fit=crop')" }}
+          title="Human figure study"
         />
         <div className="flex-[1.2] flex flex-col justify-between p-8 md:p-12 lg:p-16">
           <header className="flex justify-between items-start mb-16 gap-6">
