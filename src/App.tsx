@@ -51,15 +51,15 @@ export default function App() {
           <div className="flex-1 relative flex flex-col h-full overflow-hidden bg-transparent">
             <header className="md:hidden w-full flex justify-between items-center px-6 h-16 bg-surface/80 backdrop-blur-xl border-b border-outline-variant z-50 shrink-0">
               <div className="flex items-center gap-4 min-w-0">
-                <button className="text-on-surface hover:opacity-80 transition-opacity" onClick={() => setCurrentView('domains')}>
-                  <span className="material-symbols-outlined">menu</span>
+                <button className="text-on-surface hover:opacity-80 transition-opacity" onClick={() => setCurrentView('domains')} aria-label="Open domain navigation">
+                  <span className="material-symbols-outlined" aria-hidden="true">menu</span>
                 </button>
                 <span className="font-display text-lg font-medium tracking-widest text-on-surface whitespace-nowrap truncate uppercase">
                   {currentView === 'settings' ? 'Settings' : currentView === 'theory' ? DOMAIN_SEQUENCE.find(domain => domain.id === selectedDomain)?.name ?? 'Psyche Map' : 'Psyche Map'}
                 </span>
               </div>
-              <button className="text-on-surface hover:bg-surface-dim transition-colors p-2 rounded-lg flex items-center justify-center" onClick={() => setCurrentView('settings')}>
-                <span className="material-symbols-outlined">search</span>
+              <button className="text-on-surface hover:bg-surface-dim transition-colors p-2 rounded-lg flex items-center justify-center" onClick={() => setCurrentView('settings')} aria-label="Open settings">
+                <span className="material-symbols-outlined" aria-hidden="true">search</span>
               </button>
             </header>
 
@@ -157,8 +157,12 @@ function SwitchRow({ title, desc, active, noBorder }: { title: string; desc: str
         <p className="text-[15px] text-on-surface font-medium">{title}</p>
         <p className="body-text !text-[14px] text-on-surface-variant mt-1">{desc}</p>
       </div>
-      <button className={`w-12 h-6 rounded-full relative transition-colors focus:outline-none ${active ? 'bg-primary' : 'bg-outline-variant'}`}>
-        <div className={`absolute top-1 w-4 h-4 rounded-full bg-surface-bright shadow-sm transition-all duration-300 ease-in-out ${active ? 'left-7' : 'left-1'}`}></div>
+      <button
+        role="switch"
+        aria-checked={active}
+        className={`w-12 h-6 rounded-full relative transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${active ? 'bg-primary' : 'bg-outline-variant'}`}
+      >
+        <div className={`absolute top-1 w-4 h-4 rounded-full bg-surface-bright shadow-sm transition-all duration-300 ease-in-out ${active ? 'left-7' : 'left-1'}`} aria-hidden="true" />
       </button>
     </div>
   );
@@ -173,21 +177,3 @@ function ActionRow({ title, icon, danger, noBorder }: { title: string; icon: str
   );
 }
 
-function iconForDomain(title: string) {
-  switch (title) {
-    case 'Personality & Individual Differences':
-      return 'fingerprint';
-    case 'Cognition & Judgment':
-      return 'psychology';
-    case 'Motivation & Behavioral Regulation':
-      return 'moving';
-    case 'Relationships & Attachment':
-      return 'diversity_3';
-    case 'Emotion & Emotion Regulation':
-      return 'mood';
-    case 'Self & Identity':
-      return 'face_retouching_natural';
-    default:
-      return 'explore';
-  }
-}

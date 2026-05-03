@@ -53,8 +53,8 @@ function InspectorPanel({ inspectorKey, onClose }: { inspectorKey: InspectorKey 
       <aside className="fixed top-0 right-0 w-full md:w-[420px] h-full bg-surface-bright z-[80] border-l border-outline-variant elevation-soft flex flex-col transform transition-transform duration-300 md:rounded-l-[28px] translate-x-0">
         <div className="w-full flex justify-between items-center py-4 px-4 sm:px-6 border-b border-outline-variant/50">
           <p className="panel-tag text-primary text-xs sm:text-sm">{data.eyebrow}</p>
-          <button className="p-2 rounded-full hover:bg-surface-dim transition-colors text-on-surface-variant flex items-center justify-center w-10 h-10" onClick={onClose}>
-            <span className="material-symbols-outlined">close</span>
+          <button className="p-2 rounded-full hover:bg-surface-dim transition-colors text-on-surface-variant flex items-center justify-center w-10 h-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2" onClick={onClose} aria-label="Close inspector">
+            <span className="material-symbols-outlined" aria-hidden="true">close</span>
           </button>
         </div>
 

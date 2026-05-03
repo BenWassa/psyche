@@ -25,7 +25,7 @@ export default function PersonalityTheory({ onInspect }: { onInspect: (key: stri
           <FacetPills facets={TRAIT_FACETS.conscientiousness} compact />
         </button>
 
-        <button onClick={() => onInspect('extraversion')} className="interactive-node p-6 text-left group lg:col-span-2 bg-gradient-to-br from-surface-bright to-surface-dim/60 border-primary/50">
+        <button onClick={() => onInspect('extraversion')} className="interactive-node p-6 text-left group lg:col-span-2 border-primary/50">
           <TheoryTileHeader index="03" title="Extraversion" tier="include" subtitle="Energy, positive affect, assertiveness" icon="group" tone="primary" />
           <div className="grid grid-cols-2 gap-3 mt-5">
             <FacetPill label="Enthusiasm" tone="primary" />

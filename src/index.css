@@ -67,7 +67,7 @@ body {
   background-color: var(--color-surface-bright);
   border: 1px solid var(--color-outline-variant);
   border-radius: 12px;
-  transition: all 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   box-shadow: 0 4px 6px rgba(44, 44, 42, 0.02);
 }
 
@@ -80,6 +80,16 @@ body {
 
 .interactive-node:hover .node-title {
   color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive-node {
+    transition: border-color 0.1s ease;
+  }
+  .interactive-node:hover {
+    transform: none;
+    box-shadow: 0 4px 6px rgba(44, 44, 42, 0.02);
+  }
 }
 
 .domain-hero-title {
@@ -117,5 +127,16 @@ body {
   font-family: var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
