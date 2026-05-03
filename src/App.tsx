@@ -23,6 +23,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen text-on-surface selection:bg-primary/30 selection:text-on-surface relative">
+      <div id="a11y-live" aria-live="polite" className="sr-only" />
       {currentView === 'encyclopedia' && <EncyclopediaView onEnter={() => setCurrentView('domains')} />}
 
       {currentView !== 'encyclopedia' && (
