@@ -21,3 +21,6 @@ database-debug.log
 .vscode/settings.json
 .idea/
 *.log
+
+/.agents
+/.claude
