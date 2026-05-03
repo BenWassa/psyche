@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import { InstallPrompt, UpdateNotification } from '@/components';
+import { useServiceWorker } from '@/hooks';
 
 type ViewMode = 'encyclopedia' | 'domains' | 'theory' | 'settings';
 type DomainId = 'personality' | 'cognition' | 'motivation' | 'relationships' | 'emotion' | 'self';
@@ -184,6 +186,8 @@ const INSPECTOR_COPY: Record<
 
 export default function App() {
   const [currentView, setCurrentView] = useState<ViewMode>('encyclopedia');
+  useServiceWorker();
+
   const [selectedDomain, setSelectedDomain] = useState<DomainId>('personality');
 
   const openDomain = (domain: DomainId) => {
@@ -246,6 +250,8 @@ export default function App() {
             <BottomNavItem icon="auto_stories" label="Archive" active={false} onClick={() => setCurrentView('encyclopedia')} />
             <BottomNavItem icon="map" label="Domains" active={currentView === 'domains'} onClick={() => setCurrentView('domains')} />
             <BottomNavItem icon="schema" label="Theory" active={currentView === 'theory'} onClick={() => setCurrentView('theory')} />
+      <InstallPrompt />
+      <UpdateNotification />
             <BottomNavItem icon="person" label="Settings" active={currentView === 'settings'} onClick={() => setCurrentView('settings')} />
           </nav>
         </div>

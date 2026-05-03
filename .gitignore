@@ -4,3 +4,20 @@ dist/
 *.local
 *.tsbuildinfo
 .DS_Store
+
+# PWA & Firebase
+firebase-debug.log
+firestore-debug.log
+database-debug.log
+.runtimeconfig.json
+.firebase/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE & OS
+.vscode/settings.json
+.idea/
+*.log

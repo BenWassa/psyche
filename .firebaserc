@@ -1,0 +1,6 @@
+# Firebase configuration
+# This file stores your Firebase project alias
+# After running: firebase init hosting
+# It will be populated automatically with your project details
+# 
+# Format: {"projects": {"default": "your-project-id"}}

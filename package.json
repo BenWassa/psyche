@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "firebase:init": "firebase init hosting",
+    "firebase:serve": "firebase serve",
+    "firebase:deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
     "react": "^19.0.1",
@@ -22,6 +25,9 @@
     "@vitejs/plugin-react": "^5.0.4",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2",
-    "vite": "^6.2.3"
+    "vite": "^6.2.3",
+    "vite-plugin-pwa": "^0.20.1",
+    "workbox-cli": "^7.1.0",
+    "firebase-tools": "^13.1.0"
   }
 }
