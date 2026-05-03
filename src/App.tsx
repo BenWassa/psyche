@@ -141,6 +141,9 @@ function ToggleRow({ title, desc, options, active, noBorder }: { title: string; 
         {options.map(opt => (
           <button
             key={opt}
+            type="button"
+            aria-pressed={opt === active}
+            aria-label={`${title}: ${opt}`}
             className={`px-4 py-2 mono-label text-[12px] font-medium rounded-md transition-all ${opt === active ? 'bg-surface-bright text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
           >
             {opt}
@@ -171,7 +174,7 @@ function SwitchRow({ title, desc, active, noBorder }: { title: string; desc: str
 
 function ActionRow({ title, icon, danger, noBorder }: { title: string; icon: string; danger?: boolean; noBorder?: boolean }) {
   return (
-    <button className={`w-full flex items-center justify-between py-4 cursor-pointer group rounded-lg px-2 -mx-2 transition-colors hover:bg-surface-dim ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
+    <button type="button" className={`w-full flex items-center justify-between py-4 cursor-pointer group rounded-lg px-2 -mx-2 transition-colors hover:bg-surface-dim ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
       <p className={`font-body text-[15px] font-medium transition-colors ${danger ? 'text-primary' : 'text-on-surface group-hover:text-primary'}`}>{title}</p>
       <span className={`material-symbols-outlined text-[20px] transition-colors ${danger ? 'text-primary' : 'text-outline group-hover:text-primary'}`}>{icon}</span>
     </button>
