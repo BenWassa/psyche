@@ -2,6 +2,38 @@
 @import "tailwindcss";
 
 @theme {
+  /* Light mode (default) */
+  --color-surface: #f9f8f6;
+  --color-surface-dim: #f0efe9;
+  --color-surface-bright: #ffffff;
+
+  --color-on-surface: #2c2c2a;
+  --color-on-surface-variant: #5c5c5a;
+
+  --color-outline: #8c8c8a;
+  --color-outline-variant: #d6d5cf;
+
+  --color-primary: #a65d57;
+  --color-primary-container: #ecd9d7;
+  --color-on-primary-container: #4a2522;
+
+  --color-domain-cognition: #6b7f8c;
+  --color-domain-self: #7a8b79;
+  --color-domain-motivation: #cba36b;
+  --color-domain-relationships: #c28f8f;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Newsreader", serif;
+  --font-mono: "DM Mono", monospace;
+
+  --color-background: var(--color-surface);
+  --color-on-background: var(--color-on-surface);
+  --color-secondary: var(--color-primary);
+  --color-on-secondary: #ffffff;
+}
+
+/* Dark theme variant */
+[data-theme="dark"] {
   --color-surface: #0a0f1e;
   --color-surface-dim: #111a31;
   --color-surface-bright: #15213a;
@@ -20,15 +52,17 @@
   --color-domain-self: #7db08e;
   --color-domain-motivation: #d3a85a;
   --color-domain-relationships: #d08c8c;
+}
 
-  --font-display: "Fraunces", serif;
-  --font-body: "Newsreader", serif;
-  --font-mono: "DM Mono", monospace;
+/* Smooth theme transition, respecting reduced-motion */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  --color-background: var(--color-surface);
-  --color-on-background: var(--color-on-surface);
-  --color-secondary: var(--color-primary);
-  --color-on-secondary: #f6e7bf;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    transition: none;
+  }
 }
 
 html,

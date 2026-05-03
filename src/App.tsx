@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InstallPrompt, UpdateNotification, EvidenceCard } from '@/components';
 import { useServiceWorker } from '@/hooks';
 import type { ViewMode, DomainId, InspectorKey } from '@/types';
@@ -12,9 +12,35 @@ import { SidebarItem, BottomNavItem } from '@/components/nav';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<ViewMode>('encyclopedia');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   useServiceWorker();
 
   const [selectedDomain, setSelectedDomain] = useState<DomainId>('personality');
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      applyTheme(savedTheme);
+    }
+  }, []);
+
+  // Apply theme to DOM
+  const applyTheme = (newTheme: 'light' | 'dark') => {
+    const root = document.documentElement;
+    if (newTheme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+    localStorage.setItem('theme', newTheme);
+  };
+
+  const toggleTheme = (newTheme: 'light' | 'dark') => {
+    setTheme(newTheme);
+    applyTheme(newTheme);
+  };
 
   const openDomain = (domain: DomainId) => {
     setSelectedDomain(domain);
@@ -68,7 +94,7 @@ export default function App() {
               <div className={`${currentView === 'settings' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto h-full`}>
                 {currentView === 'domains' && <DomainIndexView onOpenDomain={openDomain} selectedDomain={selectedDomain} />}
                 {currentView === 'theory' && <TheoryView domain={selectedDomain} onBack={() => setCurrentView('domains')} onOpenDomain={openDomain} />}
-                {currentView === 'settings' && <SettingsView />}
+                {currentView === 'settings' && <SettingsView theme={theme} onThemeChange={toggleTheme} />}
               </div>
             </main>
           </div>
@@ -92,7 +118,7 @@ export default function App() {
 
 // UI atoms moved to src/components/ui
 
-function SettingsView() {
+function SettingsView({ theme, onThemeChange }: { theme: 'light' | 'dark'; onThemeChange: (t: 'light' | 'dark') => void }) {
   return (
     <div className="flex flex-col mb-12 w-full">
       <div className="mb-8 pb-6 border-b border-outline-variant/50">
@@ -105,7 +131,7 @@ function SettingsView() {
           <h2 className="panel-tag text-primary mb-5">Appearance</h2>
           <div className="space-y-5">
             <ToggleRow title="Typography" desc="Select preferred reading font" options={['Serif', 'Sans']} active="Serif" />
-            <ToggleRow title="Reading Mode" desc="Adjust contrast and background tone" options={['Paper', 'Ink']} active="Ink" noBorder />
+            <ToggleRow title="Reading Mode" desc="Adjust contrast and background tone" options={['Paper', 'Ink']} active={theme === 'light' ? 'Paper' : 'Ink'} onSelect={(opt) => onThemeChange(opt === 'Paper' ? 'light' : 'dark')} noBorder />
           </div>
         </section>
 
@@ -130,7 +156,7 @@ function SettingsView() {
   );
 }
 
-function ToggleRow({ title, desc, options, active, noBorder }: { title: string; desc: string; options: string[]; active: string; noBorder?: boolean }) {
+function ToggleRow({ title, desc, options, active, onSelect, noBorder }: { title: string; desc: string; options: string[]; active: string; onSelect?: (opt: string) => void; noBorder?: boolean }) {
   return (
     <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-4 ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
       <div>
@@ -144,6 +170,7 @@ function ToggleRow({ title, desc, options, active, noBorder }: { title: string; 
             type="button"
             aria-pressed={opt === active}
             aria-label={`${title}: ${opt}`}
+            onClick={() => onSelect?.(opt)}
             className={`px-4 py-2 mono-label text-[12px] font-medium rounded-md transition-all ${opt === active ? 'bg-surface-bright text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
           >
             {opt}
