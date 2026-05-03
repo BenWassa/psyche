@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { InstallPrompt, UpdateNotification } from '@/components';
+import { InstallPrompt, UpdateNotification, EvidenceCard } from '@/components';
 import { useServiceWorker } from '@/hooks';
 
 type ViewMode = 'encyclopedia' | 'domains' | 'theory' | 'settings';
@@ -180,7 +180,356 @@ const INSPECTOR_COPY: Record<
     eyebrow: 'Field / Triad',
     title: 'Self-Compassion',
     summary: 'Self-kindness, common humanity, and mindfulness work together as a three-part system.',
+
     bullets: ['Use a three-axis or triad layout', 'The grammar should feel dimensional, not categorical', 'This content bridges attachment, emotion, and identity'],
+  },
+
+  // Cognition
+  'dual-process-system1': {
+    eyebrow: 'Paired Duality / System',
+    title: 'System 1',
+    summary: 'Fast, automatic, and effortless. Operates by default, pattern-matching from experience.',
+    bullets: [
+      'Parallel processing — handles multiple inputs simultaneously',
+      'Source of heuristics, emotional reactions, and intuition',
+      'Generates quick answers; hands off to System 2 only when challenged',
+      'Cognitive load pushes behaviour further toward System 1',
+    ],
+    note: 'System 1 is not irrational — optimised for speed. Most decisions are System 1, and most are fine.',
+  },
+  'dual-process-system2': {
+    eyebrow: 'Paired Duality / System',
+    title: 'System 2',
+    summary: 'Slow, deliberate, and effortful. Monitors System 1 output and intervenes when the stakes are high.',
+    bullets: [
+      'Sequential processing — handles one complex problem at a time',
+      'Required for logic, planning, and override of intuition',
+      'Limited capacity — cognitive load depletes System 2 availability',
+      'Expertise moves tasks from System 2 back to System 1',
+    ],
+    note: 'Strong organising metaphor, not a literal two-brain model. Parts of the priming research in Thinking Fast and Slow have failed replication.',
+  },
+  anchoring: {
+    eyebrow: 'Heuristic / Bias',
+    title: 'Anchoring',
+    summary: 'The first number you encounter disproportionately influences all subsequent estimates.',
+    bullets: [
+      'Effect holds even when anchors are arbitrary or irrelevant',
+      'Resistant to explicit warnings — knowing it exists does not eliminate it',
+      'Applies in negotiation, medical diagnosis, legal sentencing',
+    ],
+  },
+  availability: {
+    eyebrow: 'Heuristic / Bias',
+    title: 'Availability',
+    summary: 'Easily recalled examples feel more frequent than they are.',
+    bullets: [
+      'Vivid, recent, or emotionally loaded events feel more probable',
+      'Explains overestimation of dramatic risks (plane crashes) vs common ones (car accidents)',
+      'Media exposure amplifies availability effects at population scale',
+    ],
+  },
+  framing: {
+    eyebrow: 'Heuristic / Bias',
+    title: 'Framing',
+    summary: 'Identical information feels different depending on how it is presented.',
+    bullets: [
+      '"90% survival rate" vs "10% mortality rate" — same fact, different emotional weight',
+      'Loss frames trigger stronger responses than gain frames',
+      'One of the most robustly replicated effects in judgment research',
+    ],
+  },
+  'confirmation-bias': {
+    eyebrow: 'Heuristic / Bias',
+    title: 'Confirmation Bias',
+    summary: 'We seek, interpret, and remember evidence that confirms what we already believe.',
+    bullets: [
+      'Operates at the level of search (what we look for) and interpretation (how we read it)',
+      'Strengthened by identity-linked beliefs — the more the belief defines us, the stronger the bias',
+      'Dissonance is often resolved via confirmation rather than belief revision',
+    ],
+  },
+  'loss-aversion': {
+    eyebrow: 'Heuristic / Bias',
+    title: 'Loss Aversion',
+    summary: 'Losses feel approximately twice as powerful as equivalent gains.',
+    bullets: [
+      'Explains status quo bias — defaults benefit from the asymmetry',
+      'Drives risk aversion in gain frames and risk-seeking in loss frames',
+      'Core mechanism behind Prospect Theory (Kahneman and Tversky)',
+    ],
+  },
+  'cognitive-dissonance': {
+    eyebrow: 'Include / Process',
+    title: 'Cognitive Dissonance',
+    summary: 'Holding two conflicting cognitions creates discomfort — resolved usually by rationalising rather than changing.',
+    bullets: [
+      'Preferred resolution: rationalise, not change behaviour or belief',
+      'Self-justification and effort justification are common everyday forms',
+      'Construct survives; 1959 induced-compliance paradigm did not replicate (Vaidis et al. 2024, 39-lab)',
+    ],
+    note: 'Teach the phenomenon (rationalisation, self-justification), not the 1959 study design.',
+  },
+  'attribution-theory': {
+    eyebrow: 'Include / Process',
+    title: 'Attribution Theory and the FAE',
+    summary: 'We explain behaviour by attributing it to the person or the situation — and systematically over-attribute to the person.',
+    bullets: [
+      'Fundamental Attribution Error: over-attribute others behaviour to disposition, under-attribute to situation',
+      'Self-Serving Bias: my successes = me; my failures = circumstances',
+      'FAE is strongest in Western samples; effect magnitude varies cross-culturally',
+    ],
+    note: 'FAE is also a System 1 heuristic for person-perception. Effect is robust; magnitude varies more than the canonical framing suggests.',
+  },
+
+  // Motivation
+  'sdt-autonomy': {
+    eyebrow: 'SDT / Need',
+    title: 'Autonomy',
+    summary: 'Acting in alignment with your own values — feeling that actions originate from the self.',
+    bullets: [
+      'Not independence — autonomy is compatible with accepting guidance from others',
+      'Controlling environments (surveillance, contingent rewards) undermine it',
+      'Intrinsic motivation depends on perceived autonomy',
+    ],
+  },
+  'sdt-competence': {
+    eyebrow: 'SDT / Need',
+    title: 'Competence',
+    summary: 'Feeling capable and effective. The need to master challenges and produce outcomes.',
+    bullets: [
+      'Conceptually identical to Self-Efficacy (Bandura) — same construct, two frameworks',
+      'Optimal challenge is key: too easy = boredom; too hard = threat',
+      'Informational (not controlling) positive feedback supports competence',
+    ],
+  },
+  'sdt-relatedness': {
+    eyebrow: 'SDT / Need',
+    title: 'Relatedness',
+    summary: 'Feeling cared for and caring for others. Connection to people who matter.',
+    bullets: [
+      'Quality of connection matters more than quantity',
+      'Insecure attachment directly starves the relatedness need',
+      'Relatedness supports internalisation of values from social context',
+    ],
+  },
+  'regulatory-focus': {
+    eyebrow: 'Include / Dimensional',
+    title: 'Regulatory Focus Theory',
+    summary: 'People pursue goals with a promotion orientation (growth, gains) or prevention orientation (security, loss-avoidance).',
+    bullets: [
+      'Promotion: eagerness strategies, higher risk tolerance, dejection when failing',
+      'Prevention: vigilance strategies, caution, agitation when failing',
+      'Fit between orientation and goal frame improves performance and satisfaction',
+    ],
+    note: 'Most people use both orientations contextually. Regulatory focus is a tendency, not a fixed type.',
+  },
+  'expectancy-theory': {
+    eyebrow: 'Include / Formula',
+    title: 'Expectancy Theory',
+    summary: 'Motivation = Expectancy x Instrumentality x Valence. A diagnostic tool for finding where motivation breaks down.',
+    bullets: [
+      'Expectancy: Can my effort produce good performance? (links to Self-Efficacy)',
+      'Instrumentality: Will good performance lead to outcomes?',
+      'Valence: Do I actually value those outcomes?',
+    ],
+    note: 'When motivation fails, identify which factor is closest to zero — that is the lever to work on.',
+  },
+
+  // Relationships
+  'attachment-secure': {
+    eyebrow: 'Field Region / Attachment',
+    title: 'Secure Attachment',
+    summary: 'Low anxiety, low avoidance. Comfortable with both closeness and independence.',
+    bullets: [
+      'Communicates needs directly; tolerates partner autonomy without threat',
+      'Uses the relationship as a secure base for exploration and growth',
+      'Most predictive of relationship satisfaction and adaptive emotion regulation',
+    ],
+    note: 'Most people sit between regions. This describes a tendency on a continuous spectrum, not a fixed type.',
+  },
+  'attachment-anxious': {
+    eyebrow: 'Field Region / Attachment',
+    title: 'Anxious / Preoccupied',
+    summary: 'High anxiety, low avoidance. Craves closeness but fears abandonment.',
+    bullets: [
+      'Hyperactivates the attachment system — amplifies bids for contact and reassurance',
+      'Sensitive to rejection signals; reads ambiguity as threat',
+      'Linked to higher emotional reactivity and lower use of reappraisal',
+    ],
+    note: 'Patterns can shift with insight, therapy, and experience of secure relationships.',
+  },
+  'attachment-dismissing': {
+    eyebrow: 'Field Region / Attachment',
+    title: 'Dismissing-Avoidant',
+    summary: 'Low anxiety, high avoidance. Values self-reliance; deactivates attachment needs.',
+    bullets: [
+      'Discomfort with emotional intimacy and disclosure',
+      'Deactivating strategies: minimising, distracting, maintaining distance',
+      'Often presents as confident independence — the cost is reduced depth of connection',
+    ],
+    note: 'Avoidance is often an adaptation to early environments that rewarded self-sufficiency.',
+  },
+  'attachment-fearful': {
+    eyebrow: 'Field Region / Attachment',
+    title: 'Fearful-Avoidant',
+    summary: 'High anxiety, high avoidance. Wants closeness but fears it simultaneously.',
+    bullets: [
+      'Oscillates between seeking and withdrawing — the pull and the push',
+      'Associated with more disorganised behavioural patterns under conflict',
+      'The disorganised label has thinner measurement support than the two-dimensional model',
+    ],
+    note: 'Understanding the two competing drives (approach and avoidance) is often more useful than the label itself.',
+  },
+  bowlby: {
+    eyebrow: 'Background / Origin',
+    title: 'Bowlby Attachment Theory',
+    summary: 'Infants form bonds with caregivers that become internal working models shaping adult relationships.',
+    bullets: [
+      'Attachment system activates under threat — its aim is proximity to caregiver',
+      'Internal working models: beliefs about self-worth and others availability',
+      'Caregiver consistency (not perfection) is the primary driver of security',
+    ],
+    note: 'Hazan and Shaver extended it to adult romantic relationships; Brennan and Fraley refined it into the dimensional model used today.',
+  },
+
+  // Emotion
+  'er-situation-selection': {
+    eyebrow: 'ER Strategy / Early',
+    title: 'Situation Selection',
+    summary: 'Choose which situations to enter or avoid based on their likely emotional impact.',
+    bullets: [
+      'The earliest — and often most effective — point of intervention',
+      'Requires knowing your own emotional patterns before the situation begins',
+      'Examples: declining a draining social event; scheduling hard conversations for peak energy',
+    ],
+  },
+  'er-situation-modification': {
+    eyebrow: 'ER Strategy / Early',
+    title: 'Situation Modification',
+    summary: 'Change the situation itself to alter its emotional trajectory.',
+    bullets: [
+      'More flexible than avoidance — you stay in the situation but reshape it',
+      'Examples: moving a difficult conversation to a private setting; breaking a task into smaller pieces',
+      'Requires some agency over environmental conditions',
+    ],
+  },
+  'er-attentional-deployment': {
+    eyebrow: 'ER Strategy / Middle',
+    title: 'Attentional Deployment',
+    summary: 'Direct attention within the situation — toward or away from emotionally charged elements.',
+    bullets: [
+      'Distraction: short-term effective for mild negative emotions',
+      'Concentration: sustained focus on neutral or positive aspects',
+      'Rumination is attentional deployment gone wrong — sustained focus on negative content amplifies distress',
+    ],
+  },
+  reappraisal: {
+    eyebrow: 'ER Strategy / Middle-Late',
+    title: 'Cognitive Reappraisal',
+    summary: 'Change how you interpret the situation — the emotion changes with it. The most empirically supported regulation strategy.',
+    bullets: [
+      'Intervenes before the emotional response consolidates',
+      'Lower physiological and relational cost than suppression',
+      'Examples: nerves as excitement; a difficult conversation as a relationship investment',
+    ],
+    note: 'Reappraisal requires deliberate System 2 engagement. It is the formal target of CBT cognitive restructuring — both describe the same mechanism.',
+  },
+  suppression: {
+    eyebrow: 'ER Strategy / Late',
+    title: 'Suppression',
+    summary: 'Inhibiting outward expression of emotion after it has emerged. The least effective strategy.',
+    bullets: [
+      'Physiological: arousal continues internally despite hidden expression',
+      'Cognitive: increases cognitive load, impairs memory of the interaction',
+      'Relational: partners of suppressors report feeling less close and less understood',
+    ],
+    note: 'Suppression is not the same as composure. Choosing when and how to express is different from blanket inhibition.',
+  },
+  'constructed-emotion': {
+    eyebrow: 'Include / Perspective',
+    title: 'Constructed Emotion Theory',
+    summary: 'Emotions are not hard-wired responses to stimuli. The brain constructs them from interoception, past experience, and cultural concepts.',
+    bullets: [
+      'Interoception + prior experience + cultural concepts + context = the emotion you feel',
+      'Emotion granularity: more precise vocabulary leads to finer-grained experience',
+      'Anxious and excited can be the same physiological state, differently constructed',
+    ],
+    note: 'Active theoretical debate. Meta-analyses fail to find unique neural fingerprints for specific emotions — a point in Barrett favour. Present as one perspective.',
+  },
+  'appraisal-primary': {
+    eyebrow: 'Appraisal / Stage',
+    title: 'Primary Appraisal',
+    summary: 'The first evaluation: is this event relevant to me, and is it good or bad?',
+    bullets: [
+      'Three outcomes: irrelevant (no emotion), benign/positive, or stressful (proceed to secondary)',
+      'Operates rapidly, often below awareness — System 1 does the first pass',
+      'Same event, different appraisal leads to different emotion in different people',
+    ],
+  },
+  'appraisal-secondary': {
+    eyebrow: 'Appraisal / Stage',
+    title: 'Secondary Appraisal',
+    summary: 'The evaluation of coping capacity: can I handle this?',
+    bullets: [
+      'Threat: potential harm, low perceived coping — fear, anxiety',
+      'Challenge: demanding but manageable — eagerness, drive',
+      'Harm/Loss: damage already done — sadness, anger',
+    ],
+    note: 'This is what cognitive reappraisal changes. CBT restructuring targets the appraisal, not the event.',
+  },
+
+  // Self and Identity
+  'efficacy-mastery': {
+    eyebrow: 'Self-Efficacy / Source',
+    title: 'Mastery Experiences',
+    summary: 'Authentic, earned successes are the most powerful source of self-efficacy.',
+    bullets: [
+      'Past success in the domain raises belief in future capability',
+      'Genuine difficulty matters — easy wins have limited impact on belief',
+      'Recovery from setbacks (not just success) is what builds durable efficacy',
+    ],
+  },
+  'efficacy-vicarious': {
+    eyebrow: 'Self-Efficacy / Source',
+    title: 'Vicarious Experience',
+    summary: 'Watching similar others succeed raises belief that you can too.',
+    bullets: [
+      'If they can, maybe I can — model similarity is critical (age, background, context)',
+      'Less powerful than mastery but more accessible when direct experience is limited',
+      'Social comparison cuts both ways — watching peers fail can lower efficacy',
+    ],
+  },
+  'efficacy-persuasion': {
+    eyebrow: 'Self-Efficacy / Source',
+    title: 'Verbal Persuasion',
+    summary: 'Credible encouragement from others can raise efficacy — within limits.',
+    bullets: [
+      'Effect is bounded: persuasion can boost belief but cannot substitute for mastery',
+      'Credibility and specificity of source matters — generic praise is less effective',
+      'Excessive flattery without skill-building produces fragile efficacy',
+    ],
+  },
+  'efficacy-physiological': {
+    eyebrow: 'Self-Efficacy / Source',
+    title: 'Physiological and Emotional States',
+    summary: 'How you interpret your body signals shapes your capability beliefs.',
+    bullets: [
+      'Arousal (racing heart, sweating) can be read as anxiety or readiness',
+      'Reframing arousal as excitement raises efficacy vs reading it as threat',
+      'Fatigue and low mood lower perceived efficacy — timing and recovery matter',
+    ],
+  },
+  'self-concept': {
+    eyebrow: 'Include / Structure',
+    title: 'Self-Concept and Self-Schemas',
+    summary: 'Cognitive structures about the self that filter attention, memory, and behaviour.',
+    bullets: [
+      'Actual Self: who you think you are now',
+      'Ideal Self: who you aspire to be — gap produces dejection emotions',
+      'Ought Self: who you feel you should be — gap produces agitation and guilt',
+    ],
+    note: 'Self-concept is connective tissue across all six domains — where personality traits, attachment patterns, cognitive schemas, and capability beliefs converge.',
   },
 };
 
@@ -443,17 +792,17 @@ function PersonalityTheory({ onInspect }: { onInspect: (key: InspectorKey) => vo
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[minmax(180px,auto)]">
         <button onClick={() => onInspect('openness')} className="interactive-node p-6 text-left group lg:col-span-2">
-          <TheoryTileHeader index="01" title="Openness" subtitle="Breadth, curiosity, aesthetic sensitivity" icon="lightbulb" />
+          <TheoryTileHeader index="01" title="Openness" tier="include" subtitle="Breadth, curiosity, aesthetic sensitivity" icon="lightbulb" />
           <FacetPills facets={TRAIT_FACETS.openness} />
         </button>
 
         <button onClick={() => onInspect('conscientiousness')} className="interactive-node p-6 text-left group">
-          <TheoryTileHeader index="02" title="Conscientiousness" subtitle="Order, persistence, dependability" icon="rule" />
+          <TheoryTileHeader index="02" title="Conscientiousness" tier="include" subtitle="Order, persistence, dependability" icon="rule" />
           <FacetPills facets={TRAIT_FACETS.conscientiousness} compact />
         </button>
 
         <button onClick={() => onInspect('extraversion')} className="interactive-node p-6 text-left group lg:col-span-2 bg-gradient-to-br from-surface-bright to-surface-dim/60 border-primary/50">
-          <TheoryTileHeader index="03" title="Extraversion" subtitle="Energy, positive affect, assertiveness" icon="group" tone="primary" />
+          <TheoryTileHeader index="03" title="Extraversion" tier="include" subtitle="Energy, positive affect, assertiveness" icon="group" tone="primary" />
           <div className="grid grid-cols-2 gap-3 mt-5">
             <FacetPill label="Enthusiasm" tone="primary" />
             <FacetPill label="Assertiveness" tone="primary" />
@@ -461,12 +810,12 @@ function PersonalityTheory({ onInspect }: { onInspect: (key: InspectorKey) => vo
         </button>
 
         <button onClick={() => onInspect('agreeableness')} className="interactive-node p-6 text-left group">
-          <TheoryTileHeader index="04" title="Agreeableness" subtitle="Compassion, cooperation, politeness" icon="handshake" />
+          <TheoryTileHeader index="04" title="Agreeableness" tier="include" subtitle="Compassion, cooperation, politeness" icon="handshake" />
           <FacetPills facets={TRAIT_FACETS.agreeableness} compact />
         </button>
 
         <button onClick={() => onInspect('neuroticism')} className="interactive-node p-6 text-left group lg:col-span-1">
-          <TheoryTileHeader index="05" title="Neuroticism" subtitle="Threat sensitivity and emotional volatility" icon="storm" />
+          <TheoryTileHeader index="05" title="Neuroticism" tier="include" subtitle="Threat sensitivity and emotional volatility" icon="storm" />
           <div className="mt-5 space-y-3">
             <FacetPill label="Withdrawal" />
             <FacetPill label="Volatility" />
@@ -482,7 +831,7 @@ function CognitionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 auto-rows-[minmax(190px,auto)]">
         <button onClick={() => onInspect('dual-process')} className="interactive-node p-6 text-left group lg:col-span-2">
-          <TheoryTileHeader index="01" title="Dual Process Theory" subtitle="Paired duality: fast intuition vs deliberate reasoning" icon="compare_arrows" />
+          <TheoryTileHeader index="01" title="Dual Process Theory" tier="cornerstone" subtitle="Paired duality: fast intuition vs deliberate reasoning" icon="compare_arrows" />
           <div className="grid grid-cols-2 gap-4 mt-6">
             <div className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4">
               <p className="panel-tag text-primary mb-2">System 1</p>
@@ -496,7 +845,7 @@ function CognitionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void
         </button>
 
         <button onClick={() => onInspect('heuristics')} className="interactive-node p-6 text-left group">
-          <TheoryTileHeader index="02" title="Heuristics & Biases" subtitle="Catalog of shortcuts and predictable errors" icon="grid_view" />
+          <TheoryTileHeader index="02" title="Heuristics & Biases" tier="cornerstone" subtitle="Catalog of shortcuts and predictable errors" icon="grid_view" />
           <div className="grid grid-cols-2 gap-2 mt-5">
             {['Anchoring', 'Availability', 'Framing', 'Confirmation', 'Loss aversion', 'Base-rate neglect'].map(bias => (
               <span key={bias} className="rounded-full border border-outline-variant bg-surface-dim/40 px-3 py-2 text-[12px] mono-label text-on-surface-variant text-center">
@@ -507,7 +856,7 @@ function CognitionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void
         </button>
 
         <button onClick={() => onInspect('cbt')} className="interactive-node p-6 text-left group lg:col-span-3">
-          <TheoryTileHeader index="03" title="Cognitive Behavioral Model" subtitle="Loop / cycle with interrupt points" icon="sync" />
+          <TheoryTileHeader index="03" title="Cognitive Behavioral Model" tier="cornerstone" subtitle="Loop / cycle with interrupt points" icon="sync" />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-6">
             {['Situation', 'Thought', 'Emotion', 'Behavior'].map((step, index) => (
               <div key={step} className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4 flex items-center justify-between gap-4">
@@ -530,7 +879,7 @@ function MotivationTheory({ onInspect }: { onInspect: (key: InspectorKey) => voi
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <button onClick={() => onInspect('sdt')} className="interactive-node p-6 text-left group lg:col-span-2">
-          <TheoryTileHeader index="01" title="Self-Determination Theory" subtitle="Three co-equal needs: autonomy, competence, relatedness" icon="favorite" />
+          <TheoryTileHeader index="01" title="Self-Determination Theory" tier="cornerstone" subtitle="Three co-equal needs: autonomy, competence, relatedness" icon="favorite" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
             {[
               ['Autonomy', 'Volition and self-endorsed action'],
@@ -546,7 +895,7 @@ function MotivationTheory({ onInspect }: { onInspect: (key: InspectorKey) => voi
         </button>
 
         <button onClick={() => onInspect('goal-setting')} className="interactive-node p-6 text-left group lg:col-span-1">
-          <TheoryTileHeader index="02" title="Goal-Setting Theory" subtitle="Process flow with feedback loops" icon="flag" />
+          <TheoryTileHeader index="02" title="Goal-Setting Theory" tier="cornerstone" subtitle="Process flow with feedback loops" icon="flag" />
           <div className="mt-5 space-y-3">
             {['Specific goal', 'Commitment', 'Feedback', 'Persistence'].map((step, index) => (
               <div key={step} className="flex items-center gap-3 rounded-xl border border-outline-variant bg-surface-dim/40 px-3 py-2">
@@ -557,6 +906,30 @@ function MotivationTheory({ onInspect }: { onInspect: (key: InspectorKey) => voi
           </div>
         </button>
       </div>
+
+      <div className="space-y-4">
+        <p className="panel-tag text-on-surface-variant">Popular but revised</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <EvidenceCard
+            title="Maslow's Hierarchy of Needs"
+            year="1943"
+            status="revised"
+            whatPeopleKnow="A five-level pyramid: physiological needs must be met before safety, then love, esteem, and self-actualisation."
+            whatSurvives="The content of the needs as a useful list. Humans do care about belonging, esteem, and meaning."
+            whatIsWrong="Tay and Diener (2011) Gallup data (123 countries) shows needs operate in parallel, not sequentially. Cross-cultural tests reject the ordering."
+            useInstead="Self-Determination Theory — autonomy, competence, relatedness — is more parsimonious and cross-culturally replicated."
+          />
+          <EvidenceCard
+            title="Grit"
+            year="2007"
+            status="revised"
+            whatPeopleKnow="Passion plus perseverance predicts long-term success beyond talent and IQ."
+            whatSurvives="Perseverance (the persistence facet) does predict outcomes — but that is already measured by Conscientiousness."
+            whatIsWrong="Crede et al. (2017) meta-analysis of 88 studies: grit is statistically indistinguishable from the perseverance facet of Conscientiousness. Incremental validity is small."
+            useInstead="Conscientiousness in the Big Five — a well-validated trait with 60 years of research."
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -565,7 +938,7 @@ function RelationshipsTheory({ onInspect }: { onInspect: (key: InspectorKey) => 
   return (
     <div className="space-y-6">
       <button onClick={() => onInspect('attachment')} className="interactive-node p-6 text-left group w-full">
-        <TheoryTileHeader index="01" title="Adult Attachment Theory" subtitle="2D continuous space: anxiety x avoidance" icon="square_foot" />
+        <TheoryTileHeader index="01" title="Adult Attachment Theory" tier="cornerstone" subtitle="2D continuous space: anxiety x avoidance" icon="square_foot" />
         <div className="mt-6 grid grid-cols-2 grid-rows-2 gap-2 rounded-2xl overflow-hidden border border-outline-variant bg-surface-dim/40 min-h-[320px]">
           {[
             ['Secure', 'low anxiety / low avoidance'],
@@ -581,6 +954,29 @@ function RelationshipsTheory({ onInspect }: { onInspect: (key: InspectorKey) => 
         </div>
         <p className="mono-label text-[11px] text-on-surface-variant mt-4">Quadrants are accessibility shortcuts. The model itself is dimensional.</p>
       </button>
+
+      <div className="space-y-4">
+        <p className="panel-tag text-on-surface-variant">Popular but revised</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <EvidenceCard
+            title="Self-Esteem (global)"
+            status="revised"
+            whatPeopleKnow="High self-esteem — feeling good about yourself — is widely promoted as a goal in education, parenting, and self-help."
+            whatSurvives="Domain-specific self-evaluations (academic self-concept, athletic self-concept) remain useful. Chronic low self-esteem is a real clinical concern."
+            whatIsWrong="Global self-esteem programs in schools showed weak or no effects (Baumeister et al. 2003). Comparative self-esteem inflates narcissism. Contingent self-esteem collapses under failure."
+            useInstead="Self-Efficacy for capability beliefs. Self-Compassion for a stable self-relationship that does not require feeling above others."
+          />
+          <EvidenceCard
+            title="Terror Management Theory"
+            year="1986"
+            status="superseded"
+            whatPeopleKnow="Humans manage existential terror of mortality by adopting cultural worldviews and pursuing self-esteem. Reminders of death (mortality salience) intensify these defences."
+            whatSurvives="Existential concerns are real and shape behaviour. The broad idea that awareness of death influences motivation has intuitive support."
+            whatIsWrong="Schimmack (2025) z-curve analysis of 800+ studies suggests the literature is heavily biased by selective reporting. Multi-lab replications (2023) and Schindler meta-analysis (2023) show much weaker effects than the original 1.0+ d's."
+            useInstead="Self-Concept (for identity coherence), Self-Compassion (for existential reckoning), and Adult Attachment (for relational security that buffers existential anxiety)."
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -589,7 +985,7 @@ function EmotionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }
   return (
     <div className="space-y-6">
       <button onClick={() => onInspect('emotion-regulation')} className="interactive-node p-6 text-left group w-full lg:col-span-3">
-        <TheoryTileHeader index="01" title="Emotion Regulation Process Model" subtitle="Timeline grammar with intervention points" icon="timeline" />
+        <TheoryTileHeader index="01" title="Emotion Regulation Process Model" tier="cornerstone" subtitle="Timeline grammar with intervention points" icon="timeline" />
         <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mt-6">
           {['Situation', 'Attention', 'Appraisal', 'Response', 'Outcome'].map((step, index) => (
             <div key={step} className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4">
@@ -601,7 +997,7 @@ function EmotionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }
       </button>
 
       <button onClick={() => onInspect('appraisal')} className="interactive-node p-6 text-left group w-full">
-        <TheoryTileHeader index="02" title="Appraisal Theory" subtitle="Branching flow: meaning drives emotion" icon="account_tree" />
+        <TheoryTileHeader index="02" title="Appraisal Theory" tier="cornerstone" subtitle="Branching flow: meaning drives emotion" icon="account_tree" />
         <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3">
           {['Is it relevant?', 'Can I cope?', 'What action fits?'].map((branch, index) => (
             <div key={branch} className="rounded-2xl border border-outline-variant bg-surface-dim/45 p-4 flex items-center justify-between gap-4">
@@ -614,6 +1010,19 @@ function EmotionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }
           ))}
         </div>
       </button>
+
+      <div className="space-y-4">
+        <p className="panel-tag text-on-surface-variant">Popular but revised</p>
+        <EvidenceCard
+          title="Broaden-and-Build Theory"
+          year="1998"
+          status="revised"
+          whatPeopleKnow="Positive emotions broaden cognition and build psychological, social, and physical resources over time."
+          whatSurvives="Positive emotions correlate with wellbeing. Some experimental support for cognitive broadening exists."
+          whatIsWrong="The positivity ratio (3:1) was mathematically refuted (Brown et al. 2013, partially retracted). Roth et al. (2024) network analysis shows the broadening mechanism does not operate as hypothesised. Build hypothesis replicates inconsistently."
+          useInstead="Appraisal Theory plus the Gross Process Model plus Self-Compassion give a more robust framework for cultivating wellbeing."
+        />
+      </div>
     </div>
   );
 }
@@ -622,7 +1031,7 @@ function SelfTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }) {
   return (
     <div className="space-y-6">
       <button onClick={() => onInspect('self-efficacy')} className="interactive-node p-6 text-left group w-full">
-        <TheoryTileHeader index="01" title="Self-Efficacy" subtitle="Network grammar: sources feed belief feed action" icon="hub" />
+        <TheoryTileHeader index="01" title="Self-Efficacy" tier="cornerstone" subtitle="Network grammar: sources feed belief feed action" icon="hub" />
         <div className="mt-6 grid grid-cols-1 md:grid-cols-5 gap-3 items-stretch">
           {['Mastery', 'Vicarious', 'Persuasion', 'States'].map(source => (
             <div key={source} className="rounded-2xl border border-outline-variant bg-surface-dim/45 p-4">
@@ -642,7 +1051,7 @@ function SelfTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }) {
       </button>
 
       <button onClick={() => onInspect('self-compassion')} className="interactive-node p-6 text-left group w-full">
-        <TheoryTileHeader index="02" title="Self-Compassion" subtitle="Three-axis field: kindness, humanity, mindfulness" icon="psychology" />
+        <TheoryTileHeader index="02" title="Self-Compassion" tier="cornerstone" subtitle="Three-axis field: kindness, humanity, mindfulness" icon="psychology" />
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-3">
           {['Self-kindness', 'Common humanity', 'Mindfulness'].map(axis => (
             <div key={axis} className="rounded-2xl border border-outline-variant bg-surface-dim/45 p-4">
@@ -711,11 +1120,19 @@ function InspectorPanel({ inspectorKey, onClose }: { inspectorKey: InspectorKey 
   );
 }
 
-function TheoryTileHeader({ index, title, subtitle, icon, tone = 'default' }: { index: string; title: string; subtitle: string; icon: string; tone?: 'default' | 'primary' }) {
+function TheoryTileHeader({ index, title, subtitle, icon, tone = 'default', tier }: { index: string; title: string; subtitle: string; icon: string; tone?: 'default' | 'primary'; tier?: 'cornerstone' | 'include' }) {
   return (
     <div className="w-full flex justify-between items-start gap-6">
       <div className="min-w-0">
-        <p className="panel-tag text-primary mb-2">{index}</p>
+        <div className="flex items-center gap-3 mb-2">
+          <p className="panel-tag text-primary">{index}</p>
+          {tier === 'cornerstone' && (
+            <span className="panel-tag text-[9px] px-2 py-0.5 rounded-full border border-primary/40 bg-primary-container/30 text-primary">Cornerstone</span>
+          )}
+          {tier === 'include' && (
+            <span className="panel-tag text-[9px] px-2 py-0.5 rounded-full border border-outline-variant text-on-surface-variant">Include</span>
+          )}
+        </div>
         <h3 className={`node-title ${tone === 'primary' ? 'text-primary' : 'text-on-surface'} text-2xl group-hover:text-primary transition-colors leading-tight`}>{title}</h3>
         <p className="body-text text-on-surface-variant mt-2 text-[15px]">{subtitle}</p>
       </div>
