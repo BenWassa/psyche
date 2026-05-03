@@ -130,8 +130,7 @@ function SettingsView({ theme, onThemeChange }: { theme: 'light' | 'dark'; onThe
         <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm lg:col-span-2">
           <h2 className="panel-tag text-primary mb-5">Appearance</h2>
           <div className="space-y-5">
-            <ToggleRow title="Typography" desc="Select preferred reading font" options={['Serif', 'Sans']} active="Serif" />
-            <ToggleRow title="Reading Mode" desc="Adjust contrast and background tone" options={['Paper', 'Ink']} active={theme === 'light' ? 'Paper' : 'Ink'} onSelect={(opt) => onThemeChange(opt === 'Paper' ? 'light' : 'dark')} noBorder />
+            <ToggleRow title="Dark vs Light Mode" desc="Adjust contrast and background tone" options={['Light', 'Dark']} icons={['light_mode', 'dark_mode']} active={theme === 'light' ? 'Light' : 'Dark'} onSelect={(opt) => onThemeChange(opt === 'Light' ? 'light' : 'dark')} noBorder />
           </div>
         </section>
 
@@ -156,24 +155,25 @@ function SettingsView({ theme, onThemeChange }: { theme: 'light' | 'dark'; onThe
   );
 }
 
-function ToggleRow({ title, desc, options, active, onSelect, noBorder }: { title: string; desc: string; options: string[]; active: string; onSelect?: (opt: string) => void; noBorder?: boolean }) {
+function ToggleRow({ title, desc, options, icons, active, onSelect, noBorder }: { title: string; desc: string; options: string[]; icons?: string[]; active: string; onSelect?: (opt: string) => void; noBorder?: boolean }) {
   return (
-    <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-4 ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
-      <div>
-        <p className="text-[15px] text-on-surface font-medium">{title}</p>
-        <p className="body-text !text-[14px] text-on-surface-variant mt-1">{desc}</p>
+    <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-8 py-5 sm:py-6 ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
+      <div className="flex-1">
+        <p className="text-[15px] text-on-surface font-medium leading-tight">{title}</p>
+        <p className="body-text !text-[14px] text-on-surface-variant mt-2">{desc}</p>
       </div>
-      <div className="flex bg-surface-dim rounded-lg p-1 border border-outline-variant/50 shrink-0">
-        {options.map(opt => (
+      <div className="flex w-full sm:w-auto bg-surface-dim rounded-lg p-1.5 border border-outline-variant/50 shrink-0 sm:min-w-max gap-1.5 justify-between sm:justify-normal">
+        {options.map((opt, idx) => (
           <button
             key={opt}
             type="button"
             aria-pressed={opt === active}
             aria-label={`${title}: ${opt}`}
             onClick={() => onSelect?.(opt)}
-            className={`px-4 py-2 mono-label text-[12px] font-medium rounded-md transition-all ${opt === active ? 'bg-surface-bright text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
+            className={`flex items-center justify-center gap-2 px-5 py-3 rounded-md transition-all flex-1 sm:flex-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-primary ${opt === active ? 'bg-surface-bright text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
           >
-            {opt}
+            {icons && icons[idx] && <span className="material-symbols-outlined text-[20px]">{icons[idx]}</span>}
+            {!icons && <span className="mono-label text-[12px] font-medium">{opt}</span>}
           </button>
         ))}
       </div>
