@@ -1,11 +1,11 @@
 # Graph Report - /Users/benjaminhaddon/Github Repos/psyche  (2026-05-02)
 
 ## Corpus Check
-- 4 files · ~45,439 words
+- 4 files · ~47,473 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 108 nodes · 119 edges · 23 communities detected
+- 107 nodes · 118 edges · 23 communities detected
 - Extraction: 85% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
@@ -47,16 +47,16 @@
 10. `Self-Efficacy (Bandura)` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Psyche Psychology Literacy App` --references--> `Big Five / OCEAN Trait Model`  [EXTRACTED]
-  README.md → research/overview.md
 - `Psyche Psychology Literacy App` --references--> `Self-Determination Theory`  [EXTRACTED]
   README.md → research/overview.md
 - `Psyche Psychology Literacy App` --references--> `Adult Attachment Theory (Dimensional)`  [EXTRACTED]
   README.md → research/overview.md
-- `Big Five / OCEAN Trait Model` --anchors--> `Personality & Individual Differences Domain`  [EXTRACTED]
-  research/overview.md → content/domains.md
 - `Self-Determination Theory` --anchors--> `Motivation & Behavioral Regulation Domain`  [EXTRACTED]
   research/overview.md → content/domains.md
+- `Adult Attachment Theory (Dimensional)` --anchors--> `Relationships & Attachment Domain`  [EXTRACTED]
+  research/overview.md → content/domains.md
+- `Adult Attachment Theory (Dimensional)` --implements--> `Attachment Anxiety Axis`  [EXTRACTED]
+  research/overview.md → content/layers/relationships.md
 
 ## Hyperedges (group relationships)
 - **Cornerstone Theories Anchoring Six Domains** — big_five_ocean, sdt, adult_attachment_dimensional, dual_process_theory, emotion_regulation_gross, self_efficacy [EXTRACTED 1.00]
@@ -73,20 +73,20 @@
 ## Communities
 
 ### Community 0 - "Community 0"
-Cohesion: 0.16
-Nodes (17): Adult Attachment Theory (Dimensional), Attachment Anxiety Axis, Attachment Avoidance Axis, Big Five / OCEAN Trait Model, Bowlby's Attachment Theory, Cornerstone Theories Concept, Cross-Domain Connection Bridges, Domain Convergence Finding (+9 more)
+Cohesion: 0.18
+Nodes (20): Appraisal Theory, Big Five / OCEAN Trait Model, Cognition & Judgment Domain, Cognitive Behavioral Model, Cross-Domain Connection Bridges, Dual Process Theory, Emotion & Emotion Regulation Domain, Emotion Regulation Process Model (+12 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.25
-Nodes (14): Appraisal Theory, Cognition & Judgment Domain, Cognitive Behavioral Model, Dual Process Theory, Emotion & Emotion Regulation Domain, Emotion Regulation Process Model, Heuristics & Biases Framework, Layer-Based Content Architecture (+6 more)
-
-### Community 2 - "Community 2"
 Cohesion: 0.16
 Nodes (14): Conscientiousness (Big Five trait), Goal-Setting Theory (Locke & Latham), Grit (Duckworth, redundant construct), Maslow's Hierarchy (popular but revised), Self-Determination Theory (Ryan & Deci), Common Humanity component, Mindfulness component, Self-Kindness component (+6 more)
 
-### Community 3 - "Community 3"
+### Community 2 - "Community 2"
 Cohesion: 0.18
 Nodes (12): Agreeableness (Big Five trait), Neuroticism (Big Five trait), Openness (Big Five trait), Machiavellianism (Dark Triad), Narcissism (Dark Triad), Psychopathy (Dark Triad), Honesty-Humility (HEXACO), Big Five (DeYoung facet model) (+4 more)
+
+### Community 3 - "Community 3"
+Cohesion: 0.22
+Nodes (11): Adult Attachment Theory (Dimensional), Attachment Anxiety Axis, Attachment Avoidance Axis, Bowlby's Attachment Theory, Cornerstone Theories Concept, Domain Convergence Finding, Four Attachment Styles Model, Relationships & Attachment Domain (+3 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.2
@@ -105,7 +105,7 @@ Cohesion: 0.33
 Nodes (6): Extraversion (Big Five trait), Cognitive Dissonance (Festinger), Self-justification and rationalization (Dissonance), Self-Concept discrepancies producing emotions, Self-Concept & Self-Schemas (Markus), Terror Management Theory
 
 ### Community 8 - "Community 8"
-Cohesion: 0.5
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 9 - "Community 9"
@@ -199,9 +199,9 @@ Nodes (1): Prevention focus
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Big Five (DeYoung facet model)` connect `Community 3` to `Community 2`, `Community 7`?**
-  _High betweenness centrality (0.060) - this node is a cross-community bridge._
-- **Why does `Conscientiousness (Big Five trait)` connect `Community 2` to `Community 3`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `Big Five (DeYoung facet model)` connect `Community 2` to `Community 1`, `Community 7`?**
+  _High betweenness centrality (0.061) - this node is a cross-community bridge._
+- **Why does `Conscientiousness (Big Five trait)` connect `Community 1` to `Community 2`?**
+  _High betweenness centrality (0.044) - this node is a cross-community bridge._
 - **What connects `Social Identity Theory`, `Social Comparison Theory`, `Structural Type Taxonomy` to the rest of the system?**
   _50 weakly-connected nodes found - possible documentation gaps or missing edges._

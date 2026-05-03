@@ -168,31 +168,22 @@
       "norm_label": "app.tsx"
     },
     {
-      "label": "App()",
+      "label": "openDomain()",
       "file_type": "code",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L5",
-      "id": "app_app",
+      "source_location": "L189",
+      "id": "app_opendomain",
       "community": 8,
-      "norm_label": "app()"
+      "norm_label": "opendomain()"
     },
     {
-      "label": "SidebarItem()",
+      "label": "openInspector()",
       "file_type": "code",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L62",
-      "id": "app_sidebaritem",
+      "source_location": "L388",
+      "id": "app_openinspector",
       "community": 8,
-      "norm_label": "sidebaritem()"
-    },
-    {
-      "label": "BottomNavItem()",
-      "file_type": "code",
-      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L78",
-      "id": "app_bottomnavitem",
-      "community": 8,
-      "norm_label": "bottomnavitem()"
+      "norm_label": "openinspector()"
     },
     {
       "label": "main.tsx",
@@ -221,7 +212,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "psyche psychology literacy app",
       "id": "psyche_app"
     },
@@ -247,7 +238,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "self-determination theory",
       "id": "sdt"
     },
@@ -260,7 +251,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "adult attachment theory (dimensional)",
       "id": "adult_attachment_dimensional"
     },
@@ -273,7 +264,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "emotion regulation process model",
       "id": "emotion_regulation_gross"
     },
@@ -286,7 +277,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "dual process theory",
       "id": "dual_process_theory"
     },
@@ -299,7 +290,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "heuristics & biases framework",
       "id": "heuristics_biases"
     },
@@ -312,7 +303,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "cognitive behavioral model",
       "id": "cognitive_behavioral_model"
     },
@@ -325,7 +316,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "appraisal theory",
       "id": "appraisal_theory"
     },
@@ -403,7 +394,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "replication crisis in psychology",
       "id": "replication_crisis"
     },
@@ -416,7 +407,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "domain convergence finding",
       "id": "domain_convergence"
     },
@@ -468,7 +459,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "six-domain architecture",
       "id": "six_domain_architecture"
     },
@@ -481,7 +472,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "personality & individual differences domain",
       "id": "personality_domain"
     },
@@ -494,7 +485,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "motivation & behavioral regulation domain",
       "id": "motivation_domain"
     },
@@ -507,7 +498,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "cognition & judgment domain",
       "id": "cognition_domain"
     },
@@ -520,7 +511,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "relationships & attachment domain",
       "id": "relationships_domain"
     },
@@ -533,7 +524,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "emotion & emotion regulation domain",
       "id": "emotion_domain"
     },
@@ -559,7 +550,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "layer-based content architecture",
       "id": "layer_system"
     },
@@ -572,7 +563,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "attachment anxiety axis",
       "id": "attachment_anxiety_axis"
     },
@@ -585,7 +576,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "attachment avoidance axis",
       "id": "attachment_avoidance_axis"
     },
@@ -598,7 +589,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "cognitive reappraisal strategy",
       "id": "reappraisal_strategy"
     },
@@ -611,7 +602,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 0,
       "norm_label": "expressive suppression strategy",
       "id": "suppression_strategy"
     },
@@ -624,7 +615,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "bowlby's attachment theory",
       "id": "bowlby_attachment"
     },
@@ -637,7 +628,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "four attachment styles model",
       "id": "four_attachment_styles"
     },
@@ -663,7 +654,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "research synthesis & analysis",
       "id": "research_synthesis"
     },
@@ -676,7 +667,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 3,
       "norm_label": "cornerstone theories concept",
       "id": "cornerstone_theories"
     },
@@ -689,7 +680,7 @@
       "captured_at": null,
       "author": "Bandura",
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "self-efficacy (bandura)",
       "id": "self_identity_self_efficacy"
     },
@@ -702,7 +693,7 @@
       "captured_at": null,
       "author": "Neff",
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "self-compassion (neff)",
       "id": "self_identity_self_compassion"
     },
@@ -728,7 +719,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "self-esteem (global)",
       "id": "self_identity_self_esteem"
     },
@@ -754,7 +745,7 @@
       "captured_at": null,
       "author": "Ryan & Deci",
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "self-determination theory (ryan & deci)",
       "id": "motivation_sdt"
     },
@@ -767,7 +758,7 @@
       "captured_at": null,
       "author": "Locke & Latham",
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "goal-setting theory (locke & latham)",
       "id": "motivation_goal_setting"
     },
@@ -806,7 +797,7 @@
       "captured_at": null,
       "author": "Maslow",
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "maslow's hierarchy (popular but revised)",
       "id": "motivation_maslow"
     },
@@ -819,7 +810,7 @@
       "captured_at": null,
       "author": "Duckworth",
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "grit (duckworth, redundant construct)",
       "id": "motivation_grit"
     },
@@ -832,7 +823,7 @@
       "captured_at": null,
       "author": "DeYoung",
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "big five (deyoung facet model)",
       "id": "personality_big_five"
     },
@@ -845,7 +836,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "hexaco",
       "id": "personality_hexaco"
     },
@@ -858,7 +849,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "dark triad",
       "id": "personality_dark_triad"
     },
@@ -871,7 +862,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "mbti (discredited typology)",
       "id": "personality_mbti"
     },
@@ -884,7 +875,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "type a/b (refuted)",
       "id": "personality_type_ab"
     },
@@ -962,7 +953,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "autonomy (sdt need)",
       "id": "sdt_autonomy"
     },
@@ -975,7 +966,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "competence (sdt need)",
       "id": "sdt_competence"
     },
@@ -988,7 +979,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "relatedness (sdt need)",
       "id": "sdt_relatedness"
     },
@@ -1053,7 +1044,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "self-kindness component",
       "id": "sc_self_kindness"
     },
@@ -1066,7 +1057,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "common humanity component",
       "id": "sc_common_humanity"
     },
@@ -1079,7 +1070,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "mindfulness component",
       "id": "sc_mindfulness"
     },
@@ -1274,7 +1265,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "openness (big five trait)",
       "id": "bf_openness"
     },
@@ -1287,7 +1278,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 1,
       "norm_label": "conscientiousness (big five trait)",
       "id": "bf_conscientiousness"
     },
@@ -1313,7 +1304,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "agreeableness (big five trait)",
       "id": "bf_agreeableness"
     },
@@ -1326,7 +1317,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "neuroticism (big five trait)",
       "id": "bf_neuroticism"
     },
@@ -1339,7 +1330,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "honesty-humility (hexaco)",
       "id": "hexaco_honesty_humility"
     },
@@ -1352,7 +1343,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "machiavellianism (dark triad)",
       "id": "dt_machiavellianism"
     },
@@ -1365,7 +1356,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "narcissism (dark triad)",
       "id": "dt_narcissism"
     },
@@ -1378,7 +1369,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 2,
       "norm_label": "psychopathy (dark triad)",
       "id": "dt_psychopathy"
     },
@@ -1531,36 +1522,24 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L5",
+      "source_location": "L189",
       "weight": 1.0,
       "_src": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "_tgt": "app_app",
+      "_tgt": "app_opendomain",
       "source": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "target": "app_app",
+      "target": "app_opendomain",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L62",
+      "source_location": "L388",
       "weight": 1.0,
       "_src": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "_tgt": "app_sidebaritem",
+      "_tgt": "app_openinspector",
       "source": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "target": "app_sidebaritem",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/benjaminhaddon/Github Repos/psyche/src/App.tsx",
-      "source_location": "L78",
-      "weight": 1.0,
-      "_src": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "_tgt": "app_bottomnavitem",
-      "source": "users_benjaminhaddon_github_repos_psyche_src_app_tsx",
-      "target": "app_bottomnavitem",
+      "target": "app_openinspector",
       "confidence_score": 1.0
     },
     {
