@@ -8,11 +8,11 @@ export function FacetPill({ label, tone = 'default' }: { label: string; tone?: '
   );
 }
 
-export function FacetPills({ facets, compact = false }: { facets: readonly string[]; compact?: boolean }) {
+export function FacetPills({ facets, compact = false, tone = 'default' }: { facets: readonly string[]; compact?: boolean; tone?: 'default' | 'primary' }) {
   return (
-    <div className={`grid ${compact ? 'grid-cols-1 gap-2 mt-5' : 'grid-cols-2 gap-3 mt-5'}`}>
+    <div className="flex flex-wrap gap-2 mt-5">
       {facets.map(facet => (
-        <FacetPill key={facet} label={facet} />
+        <FacetPill key={facet} label={facet} tone={tone} />
       ))}
     </div>
   );

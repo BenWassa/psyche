@@ -1,6 +1,6 @@
 import React from 'react';
 import { TheoryTileHeader } from '@/components/ui';
-import { FacetPill, FacetPills } from '@/components/ui';
+import { FacetPills } from '@/components/ui';
 import { TRAIT_FACETS } from '@/data/domains';
 
 export default function PersonalityTheory({ onInspect }: { onInspect: (key: string) => void }) {
@@ -25,12 +25,9 @@ export default function PersonalityTheory({ onInspect }: { onInspect: (key: stri
           <FacetPills facets={TRAIT_FACETS.conscientiousness} compact />
         </button>
 
-        <button onClick={() => onInspect('extraversion')} className="interactive-node p-6 text-left group lg:col-span-2 border-primary/50">
-          <TheoryTileHeader index="03" title="Extraversion" subtitle="Energy, positive affect, assertiveness" icon="group" tone="primary" />
-          <div className="grid grid-cols-2 gap-3 mt-5">
-            <FacetPill label="Enthusiasm" tone="primary" />
-            <FacetPill label="Assertiveness" tone="primary" />
-          </div>
+        <button onClick={() => onInspect('extraversion')} className="interactive-node p-6 text-left group lg:col-span-2">
+          <TheoryTileHeader index="03" title="Extraversion" subtitle="Energy, positive affect, assertiveness" icon="group" />
+          <FacetPills facets={TRAIT_FACETS.extraversion} />
         </button>
 
         <button onClick={() => onInspect('agreeableness')} className="interactive-node p-6 text-left group">
@@ -40,10 +37,7 @@ export default function PersonalityTheory({ onInspect }: { onInspect: (key: stri
 
         <button onClick={() => onInspect('neuroticism')} className="interactive-node p-6 text-left group lg:col-span-1">
           <TheoryTileHeader index="05" title="Neuroticism" subtitle="Threat sensitivity and emotional volatility" icon="storm" />
-          <div className="mt-5 space-y-3">
-            <FacetPill label="Withdrawal" />
-            <FacetPill label="Volatility" />
-          </div>
+          <FacetPills facets={TRAIT_FACETS.neuroticism} />
         </button>
       </div>
     </div>
