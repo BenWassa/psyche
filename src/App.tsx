@@ -555,8 +555,8 @@ export default function App() {
               <h1 className="text-xl font-medium text-on-surface tracking-[0.22em] font-display uppercase">Psyche Map</h1>
               <p className="panel-tag text-on-surface-variant mt-3">Editorial atlas</p>
             </div>
-            <div className="px-6 pb-2 text-[11px] font-bold uppercase text-on-surface-variant tracking-[0.18em] mono-label">Domains</div>
-            <nav className="flex-1 px-4 space-y-2 overflow-y-auto mt-2 pb-6">
+            <div className="px-6 pt-5 pb-2 mono-label text-[11px] text-on-surface-variant tracking-[0.18em]">Domains</div>
+            <nav className="flex-1 px-4 space-y-1.5 overflow-y-auto pb-6">
               {DOMAIN_SEQUENCE.map(domain => (
                 <SidebarItem
                   key={domain.id}
@@ -586,7 +586,7 @@ export default function App() {
               </button>
             </header>
 
-            <main className="flex-1 overflow-y-auto p-4 md:p-12 lg:p-16">
+            <main className="flex-1 overflow-y-auto p-5 sm:p-8 md:p-10 lg:p-12">
               <div className={`${currentView === 'settings' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto h-full`}>
                 {currentView === 'domains' && <DomainIndexView onOpenDomain={openDomain} selectedDomain={selectedDomain} />}
                 {currentView === 'theory' && <TheoryView domain={selectedDomain} onBack={() => setCurrentView('domains')} onOpenDomain={openDomain} />}
@@ -599,10 +599,10 @@ export default function App() {
             <BottomNavItem icon="auto_stories" label="Archive" active={false} onClick={() => setCurrentView('encyclopedia')} />
             <BottomNavItem icon="map" label="Domains" active={currentView === 'domains'} onClick={() => setCurrentView('domains')} />
             <BottomNavItem icon="schema" label="Theory" active={currentView === 'theory'} onClick={() => setCurrentView('theory')} />
-      <InstallPrompt />
-      <UpdateNotification />
             <BottomNavItem icon="person" label="Settings" active={currentView === 'settings'} onClick={() => setCurrentView('settings')} />
           </nav>
+          <InstallPrompt />
+          <UpdateNotification />
         </div>
       )}
     </div>
@@ -692,16 +692,11 @@ function EncyclopediaView({ onEnter }: { onEnter: () => void }) {
 function DomainIndexView({ selectedDomain, onOpenDomain }: { selectedDomain: DomainId; onOpenDomain: (domain: DomainId) => void }) {
   return (
     <div className="flex flex-col gap-6 sm:gap-8 h-full pb-20">
-      <div className="mb-2 border-b border-outline-variant/50 pb-4 sm:pb-6 flex flex-col gap-3 sm:gap-4 md:flex-row md:justify-between md:items-end">
-        <div>
-          <p className="panel-tag text-primary mb-2 text-xs sm:text-sm">Domain index</p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-light mb-2 sm:mb-3 text-on-surface">Six Domains</h1>
-          <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">The app follows the real six-domain sequence. Each card opens a live theory view with inspector panels.</p>
-        </div>
-        <div className="rounded-lg sm:rounded-2xl border border-outline-variant/70 bg-surface-bright/40 px-3 sm:px-4 py-2 sm:py-3 w-full md:max-w-sm">
-          <p className="panel-tag text-on-surface-variant text-xs mb-1 sm:mb-2">Pedagogical sequence</p>
-          <p className="text-xs sm:text-sm text-on-surface mt-1">Personality → Cognition → Motivation → Relationships → Emotion → Self</p>
-        </div>
+      <div className="mb-2 border-b border-outline-variant/50 pb-6 sm:pb-8">
+        <p className="panel-tag text-primary mb-3">Domain index</p>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-light mb-4 text-on-surface">Six Domains</h1>
+        <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed mb-4">The app follows the real six-domain sequence. Each card opens a live theory view with inspector panels.</p>
+        <p className="panel-tag text-on-surface-variant text-[11px]">Personality · Cognition · Motivation · Relationships · Emotion · Self</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -832,13 +827,13 @@ function CognitionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 auto-rows-[minmax(190px,auto)]">
         <button onClick={() => onInspect('dual-process')} className="interactive-node p-6 text-left group lg:col-span-2">
           <TheoryTileHeader index="01" title="Dual Process Theory" tier="cornerstone" subtitle="Paired duality: fast intuition vs deliberate reasoning" icon="compare_arrows" />
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            <div className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4">
-              <p className="panel-tag text-primary mb-2">System 1</p>
+          <div className="grid grid-cols-2 gap-4 mt-6 border-t border-outline-variant/40 pt-4">
+            <div className="flex flex-col gap-1.5">
+              <p className="panel-tag text-primary">System 1</p>
               <p className="body-text text-on-surface-variant">Fast, automatic, associative, low effort.</p>
             </div>
-            <div className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4">
-              <p className="panel-tag text-primary mb-2">System 2</p>
+            <div className="flex flex-col gap-1.5 border-l border-outline-variant/50 pl-4">
+              <p className="panel-tag text-primary">System 2</p>
               <p className="body-text text-on-surface-variant">Slow, deliberate, effortful, rule-based.</p>
             </div>
           </div>
@@ -857,14 +852,11 @@ function CognitionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void
 
         <button onClick={() => onInspect('cbt')} className="interactive-node p-6 text-left group lg:col-span-3">
           <TheoryTileHeader index="03" title="Cognitive Behavioral Model" tier="cornerstone" subtitle="Loop / cycle with interrupt points" icon="sync" />
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px mt-6 rounded-xl overflow-hidden border border-outline-variant/50 bg-outline-variant/30">
             {['Situation', 'Thought', 'Emotion', 'Behavior'].map((step, index) => (
-              <div key={step} className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4 flex items-center justify-between gap-4">
-                <div>
-                  <p className="panel-tag text-primary mb-1">0{index + 1}</p>
-                  <p className="body-text text-on-surface">{step}</p>
-                </div>
-                {index < 3 && <span className="material-symbols-outlined text-primary">arrow_forward</span>}
+              <div key={step} className="bg-surface-bright/80 p-4 flex flex-col gap-1.5">
+                <p className="panel-tag text-primary">0{index + 1}</p>
+                <p className="body-text text-on-surface">{step}</p>
               </div>
             ))}
           </div>
@@ -880,14 +872,14 @@ function MotivationTheory({ onInspect }: { onInspect: (key: InspectorKey) => voi
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <button onClick={() => onInspect('sdt')} className="interactive-node p-6 text-left group lg:col-span-2">
           <TheoryTileHeader index="01" title="Self-Determination Theory" tier="cornerstone" subtitle="Three co-equal needs: autonomy, competence, relatedness" icon="favorite" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px mt-6 rounded-xl overflow-hidden border border-outline-variant/50 bg-outline-variant/30">
             {[
               ['Autonomy', 'Volition and self-endorsed action'],
               ['Competence', 'Effectance and mastery'],
               ['Relatedness', 'Belonging and care'],
             ].map(([name, desc]) => (
-              <div key={name} className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4">
-                <p className="panel-tag text-primary mb-2">{name}</p>
+              <div key={name} className="bg-surface-bright/80 p-4 flex flex-col gap-1.5">
+                <p className="panel-tag text-primary">{name}</p>
                 <p className="body-text text-on-surface-variant">{desc}</p>
               </div>
             ))}
@@ -986,10 +978,10 @@ function EmotionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }
     <div className="space-y-6">
       <button onClick={() => onInspect('emotion-regulation')} className="interactive-node p-6 text-left group w-full lg:col-span-3">
         <TheoryTileHeader index="01" title="Emotion Regulation Process Model" tier="cornerstone" subtitle="Timeline grammar with intervention points" icon="timeline" />
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-px mt-6 rounded-xl overflow-hidden border border-outline-variant/50 bg-outline-variant/30">
           {['Situation', 'Attention', 'Appraisal', 'Response', 'Outcome'].map((step, index) => (
-            <div key={step} className="rounded-2xl border border-outline-variant bg-surface-dim/50 p-4">
-              <p className="panel-tag text-primary mb-2">0{index + 1}</p>
+            <div key={step} className="bg-surface-bright/80 p-4 flex flex-col gap-1.5">
+              <p className="panel-tag text-primary">0{index + 1}</p>
               <p className="body-text text-on-surface-variant">{step}</p>
             </div>
           ))}
@@ -998,14 +990,11 @@ function EmotionTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }
 
       <button onClick={() => onInspect('appraisal')} className="interactive-node p-6 text-left group w-full">
         <TheoryTileHeader index="02" title="Appraisal Theory" tier="cornerstone" subtitle="Branching flow: meaning drives emotion" icon="account_tree" />
-        <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-px rounded-xl overflow-hidden border border-outline-variant/50 bg-outline-variant/30">
           {['Is it relevant?', 'Can I cope?', 'What action fits?'].map((branch, index) => (
-            <div key={branch} className="rounded-2xl border border-outline-variant bg-surface-dim/45 p-4 flex items-center justify-between gap-4">
-              <div>
-                <p className="panel-tag text-primary mb-1">Branch 0{index + 1}</p>
-                <p className="body-text text-on-surface-variant">{branch}</p>
-              </div>
-              <span className="material-symbols-outlined text-primary">arrow_forward</span>
+            <div key={branch} className="bg-surface-bright/80 p-4 flex flex-col gap-1.5">
+              <p className="panel-tag text-primary">Branch 0{index + 1}</p>
+              <p className="body-text text-on-surface-variant">{branch}</p>
             </div>
           ))}
         </div>
@@ -1032,31 +1021,31 @@ function SelfTheory({ onInspect }: { onInspect: (key: InspectorKey) => void }) {
     <div className="space-y-6">
       <button onClick={() => onInspect('self-efficacy')} className="interactive-node p-6 text-left group w-full">
         <TheoryTileHeader index="01" title="Self-Efficacy" tier="cornerstone" subtitle="Network grammar: sources feed belief feed action" icon="hub" />
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-5 gap-3 items-stretch">
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-stretch">
           {['Mastery', 'Vicarious', 'Persuasion', 'States'].map(source => (
             <div key={source} className="rounded-2xl border border-outline-variant bg-surface-dim/45 p-4">
-              <p className="panel-tag text-primary mb-2">Source</p>
-              <p className="body-text text-on-surface-variant">{source}</p>
+              <p className="panel-tag text-on-surface-variant mb-2">Source</p>
+              <p className="body-text text-on-surface">{source}</p>
             </div>
           ))}
-          <div className="rounded-2xl border border-primary/40 bg-primary-container/15 p-4 md:col-span-1">
+          <div className="rounded-2xl border border-primary/40 bg-primary-container/15 p-4">
             <p className="panel-tag text-primary mb-2">Belief</p>
-            <p className="body-text text-on-surface-variant">Capability judgment</p>
+            <p className="body-text text-on-surface">Capability judgment</p>
           </div>
           <div className="rounded-2xl border border-outline-variant bg-surface-dim/45 p-4">
-            <p className="panel-tag text-primary mb-2">Outcome</p>
-            <p className="body-text text-on-surface-variant">Action and persistence</p>
+            <p className="panel-tag text-on-surface-variant mb-2">Outcome</p>
+            <p className="body-text text-on-surface">Action and persistence</p>
           </div>
         </div>
       </button>
 
       <button onClick={() => onInspect('self-compassion')} className="interactive-node p-6 text-left group w-full">
         <TheoryTileHeader index="02" title="Self-Compassion" tier="cornerstone" subtitle="Three-axis field: kindness, humanity, mindfulness" icon="psychology" />
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-px rounded-xl overflow-hidden border border-outline-variant/50 bg-outline-variant/30">
           {['Self-kindness', 'Common humanity', 'Mindfulness'].map(axis => (
-            <div key={axis} className="rounded-2xl border border-outline-variant bg-surface-dim/45 p-4">
-              <p className="panel-tag text-primary mb-2">Axis</p>
-              <p className="body-text text-on-surface-variant">{axis}</p>
+            <div key={axis} className="bg-surface-bright/80 p-4 flex flex-col gap-1.5">
+              <p className="panel-tag text-on-surface-variant">Axis</p>
+              <p className="body-text text-on-surface">{axis}</p>
             </div>
           ))}
         </div>
@@ -1085,9 +1074,8 @@ function InspectorPanel({ inspectorKey, onClose }: { inspectorKey: InspectorKey 
         </div>
 
         <div className="px-4 sm:px-6 md:px-8 py-6 sm:py-8 flex-1 overflow-y-auto w-full">
-          <div className="flex justify-between items-start mb-6 sm:mb-8 border-b border-outline-variant/40 pb-4 sm:pb-6 gap-4">
-            <h2 className="text-3xl sm:text-4xl font-display font-light text-primary">{data.title}</h2>
-            <span className="material-symbols-outlined text-primary text-2xl sm:text-3xl shrink-0">explore</span>
+          <div className="mb-6 sm:mb-8 border-b border-outline-variant/40 pb-4 sm:pb-6">
+            <h2 className="text-3xl sm:text-4xl font-display font-light text-on-surface">{data.title}</h2>
           </div>
 
           <div className="flex flex-col gap-6 sm:gap-10">
@@ -1162,32 +1150,33 @@ function FacetPill({ label, tone = 'default' }: { label: string; tone?: 'default
 function SettingsView() {
   return (
     <div className="flex flex-col mb-12 w-full">
-      <div className="mb-10">
-        <h1 className="domain-hero-title mb-4 pb-4 border-b border-outline-variant/50 relative">Settings</h1>
+      <div className="mb-8 pb-6 border-b border-outline-variant/50">
+        <p className="panel-tag text-primary mb-3">Settings</p>
+        <h1 className="text-4xl sm:text-5xl font-display font-light text-on-surface">Preferences</h1>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <section className="bg-surface-bright/35 p-8 rounded-2xl border border-outline-variant/60 shadow-sm lg:col-span-2">
-          <h2 className="panel-tag text-primary mb-6">Appearance</h2>
-          <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm lg:col-span-2">
+          <h2 className="panel-tag text-primary mb-5">Appearance</h2>
+          <div className="space-y-5">
             <ToggleRow title="Typography" desc="Select preferred reading font" options={['Serif', 'Sans']} active="Serif" />
             <ToggleRow title="Reading Mode" desc="Adjust contrast and background tone" options={['Paper', 'Ink']} active="Ink" noBorder />
           </div>
         </section>
 
-        <section className="bg-surface-bright/35 p-8 rounded-2xl border border-outline-variant/60 shadow-sm">
-          <h2 className="panel-tag text-primary mb-6">Navigation</h2>
-          <div className="space-y-6">
-            <SwitchRow title="Sequential Flow" desc="Enable next/prev article links" active={true} />
+        <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
+          <h2 className="panel-tag text-primary mb-5">Navigation</h2>
+          <div className="divide-y divide-outline-variant/30">
+            <SwitchRow title="Sequential Flow" desc="Enable next/prev article links" active={true} noBorder />
             <SwitchRow title="Auto-Hide Inspector" desc="Dismiss panels on scroll" active={false} noBorder />
           </div>
         </section>
 
-        <section className="bg-surface-bright/35 p-8 rounded-2xl border border-outline-variant/60 shadow-sm">
-          <h2 className="panel-tag text-primary mb-6">Account</h2>
-          <div className="space-y-2">
-            <ActionRow title="Manage Subscription" icon="arrow_forward" />
-            <ActionRow title="Export Library" icon="download" />
+        <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
+          <h2 className="panel-tag text-primary mb-5">Account</h2>
+          <div className="divide-y divide-outline-variant/30">
+            <ActionRow title="Manage Subscription" icon="arrow_forward" noBorder />
+            <ActionRow title="Export Library" icon="download" noBorder />
             <ActionRow title="Sign Out" icon="logout" danger noBorder />
           </div>
         </section>
