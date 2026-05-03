@@ -279,52 +279,59 @@ function SidebarItem({ order, label, subtitle, active, accent, onClick }: { orde
 
 function BottomNavItem({ icon, label, active, onClick }: { icon: string; label: string; active: boolean; onClick: () => void }) {
   return (
-    <button onClick={onClick} className={`flex flex-col items-center justify-center p-2 transition-all relative ${active ? '-translate-y-1 text-primary' : 'hover:text-primary text-on-surface-variant'}`}>
-      <span className="material-symbols-outlined mb-1 text-[24px]">{icon}</span>
-      <span className="mono-label font-medium text-[10px] tracking-widest uppercase">{label}</span>
-      {active && <span className="absolute bottom-[-4px] w-1 h-1 rounded-full bg-primary" />}
+    <button onClick={onClick} className={`flex flex-col items-center justify-center py-3 px-2 transition-all relative min-h-[60px] flex-1 ${active ? '-translate-y-0.5 text-primary' : 'hover:text-primary text-on-surface-variant'}`}>
+      <span className="material-symbols-outlined mb-0.5 text-lg sm:text-2xl">{icon}</span>
+      <span className="panel-tag font-medium text-[9px] sm:text-[10px] tracking-widest uppercase">{label}</span>
+      {active && <span className="absolute bottom-[8px] w-1.5 h-1.5 rounded-full bg-primary" />}
     </button>
   );
 }
 
 function EncyclopediaView({ onEnter }: { onEnter: () => void }) {
   return (
-    <div className="bg-transparent text-on-surface min-h-screen flex items-center justify-center p-4 md:p-8">
-      <main className="w-full max-w-[1200px] min-h-[700px] flex flex-col md:flex-row bg-surface-bright rounded-[28px] overflow-hidden elevation-soft border border-outline-variant">
+    <div className="bg-transparent text-on-surface min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-8">
+      <main className="w-full max-w-[1200px] min-h-screen sm:min-h-[600px] md:min-h-[700px] flex flex-col md:flex-row bg-surface-bright rounded-lg sm:rounded-xl md:rounded-[28px] overflow-hidden elevation-soft border border-outline-variant">
+        {/* Image: visible on all sizes, responsive height on mobile */}
         <div
-          className="flex-1 border-b md:border-b-0 md:border-r border-outline-variant relative overflow-hidden min-h-[300px] md:min-h-full bg-cover bg-center"
+          className="flex-1 border-b md:border-b-0 md:border-r border-outline-variant relative overflow-hidden min-h-[240px] sm:min-h-[300px] md:min-h-full bg-cover bg-center"
           style={{ backgroundImage: "linear-gradient(180deg, rgba(249,248,246,0.08), rgba(240,239,233,0.32)), url('https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=2400&auto=format&fit=crop')" }}
           title="Human figure study"
         />
-        <div className="flex-[1.2] flex flex-col justify-between p-8 md:p-12 lg:p-16">
-          <header className="flex justify-between items-start mb-16 gap-6">
-            <div className="panel-tag text-on-surface">Psyche Map</div>
-            <div className="panel-tag text-on-surface-variant flex gap-2 text-right">
+        
+        {/* Content: full-width on mobile, constrained on tablet+ */}
+        <div className="flex-1 md:flex-[1.2] flex flex-col justify-between p-4 sm:p-6 md:p-12 lg:p-16">
+          {/* Header */}
+          <header className="flex flex-col sm:flex-row justify-between items-start mb-6 sm:mb-8 md:mb-16 gap-3 sm:gap-6">
+            <div className="panel-tag text-on-surface text-xs sm:text-sm">Psyche Map</div>
+            <div className="panel-tag text-on-surface-variant flex gap-2 text-right text-xs">
               <span>Vol. 1</span>
               <span>—</span>
               <span>Index</span>
             </div>
           </header>
 
+          {/* Hero Section */}
           <div className="flex-grow flex flex-col justify-center">
-            <h1 className="domain-hero-title mb-8 leading-[1.05] text-on-surface">
-              The Encyclopedia<br />
-              of Mind.
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-light text-on-surface mb-4 sm:mb-6 md:mb-8 leading-[1.15] tracking-tight">
+              The Encyclopedia<br className="hidden sm:block" /> of Mind.
             </h1>
-            <div className="w-16 h-[1px] bg-primary mb-8"></div>
-            <p className="body-text text-on-surface-variant text-[18px] max-w-lg">
-              A structured, objective exploration of human cognition, emotion, and behavior. Designed as a definitive archive for the analytical mind, stripping away the superfluous to present psychological phenomena with architectural clarity.
+            <div className="w-10 sm:w-12 md:w-16 h-[1px] bg-primary mb-4 sm:mb-6 md:mb-8"></div>
+            <p className="text-sm sm:text-base md:text-lg text-on-surface-variant max-w-full sm:max-w-sm md:max-w-lg leading-relaxed">
+              A structured, objective exploration of human cognition, emotion, and behavior. Designed for the analytical mind.
             </p>
           </div>
 
-          <footer className="mt-16 pt-8 border-t border-outline-variant/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="body-text !text-[14px] text-on-surface-variant max-w-[280px]">Establish an ongoing dialogue with the architecture of thought.</div>
+          {/* Footer with CTA */}
+          <footer className="mt-8 sm:mt-10 md:mt-16 pt-4 sm:pt-6 md:pt-8 border-t border-outline-variant/40 flex flex-col gap-3 sm:gap-4 md:gap-6">
+            <div className="text-xs sm:text-sm text-on-surface-variant max-w-xs leading-relaxed">
+              Establish an ongoing dialogue with the architecture of thought.
+            </div>
             <button
               onClick={onEnter}
-              className="group inline-flex items-center justify-center bg-primary text-on-secondary rounded-lg px-8 py-4 hover:bg-primary/90 transition-colors duration-300 w-full sm:w-auto shadow-lg shadow-black/20"
+              className="group inline-flex items-center justify-center bg-primary text-surface rounded-lg px-5 sm:px-6 md:px-8 py-3 sm:py-3 md:py-4 hover:bg-primary/90 active:scale-95 transition-all duration-300 w-full sm:w-auto shadow-lg shadow-black/15 min-h-[44px] font-medium text-sm sm:text-base"
             >
-              <span className="panel-tag !text-inherit mr-3">Enter the Archive</span>
-              <span className="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+              <span className="panel-tag !text-inherit mr-2">Enter Archive</span>
+              <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
             </button>
           </footer>
         </div>
@@ -335,20 +342,20 @@ function EncyclopediaView({ onEnter }: { onEnter: () => void }) {
 
 function DomainIndexView({ selectedDomain, onOpenDomain }: { selectedDomain: DomainId; onOpenDomain: (domain: DomainId) => void }) {
   return (
-    <div className="flex flex-col gap-8 h-full pb-20">
-      <div className="mb-4 border-b border-outline-variant/50 pb-6 flex flex-col gap-4 md:flex-row md:justify-between md:items-end">
+    <div className="flex flex-col gap-6 sm:gap-8 h-full pb-20">
+      <div className="mb-2 border-b border-outline-variant/50 pb-4 sm:pb-6 flex flex-col gap-3 sm:gap-4 md:flex-row md:justify-between md:items-end">
         <div>
-          <p className="panel-tag text-primary mb-3">Domain index</p>
-          <h1 className="domain-hero-title mb-3 text-on-surface">Six Domains</h1>
-          <p className="body-text text-on-surface-variant max-w-2xl">The app now follows the real six-domain sequence. Each card opens a live theory view instead of a dead placeholder.</p>
+          <p className="panel-tag text-primary mb-2 text-xs sm:text-sm">Domain index</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-light mb-2 sm:mb-3 text-on-surface">Six Domains</h1>
+          <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">The app follows the real six-domain sequence. Each card opens a live theory view with inspector panels.</p>
         </div>
-        <div className="rounded-2xl border border-outline-variant/70 bg-surface-bright/40 px-4 py-3 max-w-sm">
-          <p className="mono-label text-[11px] text-on-surface-variant">Pedagogical sequence</p>
-          <p className="body-text text-[15px] text-on-surface mt-1">Personality → Cognition → Motivation → Relationships → Emotion → Self</p>
+        <div className="rounded-lg sm:rounded-2xl border border-outline-variant/70 bg-surface-bright/40 px-3 sm:px-4 py-2 sm:py-3 w-full md:max-w-sm">
+          <p className="panel-tag text-on-surface-variant text-xs mb-1 sm:mb-2">Pedagogical sequence</p>
+          <p className="text-xs sm:text-sm text-on-surface mt-1">Personality → Cognition → Motivation → Relationships → Emotion → Self</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {DOMAIN_SEQUENCE.map((domain, index) => (
           <DomainCard
             key={domain.id}
@@ -372,17 +379,17 @@ function DomainCard({ order, title, subtitle, summary, structure, accent, active
   return (
     <button
       onClick={onClick}
-      className={`text-left interactive-node flex flex-col p-8 group min-h-[230px] ${span} ${active ? 'border-primary shadow-lg shadow-black/20' : ''}`}
+      className={`text-left interactive-node flex flex-col p-4 sm:p-6 md:p-8 group min-h-[200px] sm:min-h-[230px] ${span} ${active ? 'border-primary shadow-lg shadow-black/20' : ''}`}
     >
-      <div className="flex justify-between items-start w-full opacity-80 group-hover:opacity-100 transition-opacity gap-6">
-        <span className="panel-tag text-on-surface-variant">Domain {order}</span>
-        <span className="material-symbols-outlined text-primary transition-colors">{iconForDomain(title)}</span>
+      <div className="flex justify-between items-start w-full opacity-80 group-hover:opacity-100 transition-opacity gap-4 sm:gap-6">
+        <span className="panel-tag text-on-surface-variant text-xs sm:text-sm">Domain {order}</span>
+        <span className="material-symbols-outlined text-primary transition-colors text-lg sm:text-2xl">{iconForDomain(title)}</span>
       </div>
-      <div className="pt-8 mt-auto flex flex-col gap-3">
-        <h2 className="node-title !text-3xl text-on-surface group-hover:text-primary transition-colors leading-tight">{title}</h2>
-        <p className={`mono-label text-[11px] ${accent}`}>{subtitle}</p>
-        <p className="body-text text-on-surface-variant max-w-2xl">{summary}</p>
-        <p className="mono-label text-[11px] text-primary mt-2">{structure}</p>
+      <div className="pt-4 sm:pt-8 mt-auto flex flex-col gap-2 sm:gap-3">
+        <h2 className="text-2xl sm:text-3xl font-display font-light text-on-surface group-hover:text-primary transition-colors leading-tight">{title}</h2>
+        <p className={`panel-tag text-xs ${accent}`}>{subtitle}</p>
+        <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl line-clamp-2">{summary}</p>
+        <p className="panel-tag text-xs text-primary mt-1 sm:mt-2">{structure}</p>
       </div>
     </button>
   );
@@ -397,18 +404,18 @@ function TheoryView({ domain, onBack, onOpenDomain }: { domain: DomainId; onBack
     <div className="flex flex-col h-full relative pb-20">
       <InspectorPanel inspectorKey={inspectorKey} onClose={() => setInspectorKey(null)} />
 
-      <header className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="panel-tag text-primary mb-3">Theory view / {DOMAIN_SEQUENCE.find(item => item.id === domain)?.order}</p>
-          <h2 className="domain-hero-title text-on-surface">{DOMAIN_SEQUENCE.find(item => item.id === domain)?.name}</h2>
-          <p className="body-text text-on-surface-variant max-w-2xl mt-4">{DOMAIN_SEQUENCE.find(item => item.id === domain)?.summary}</p>
+      <header className="mb-8 sm:mb-10 flex flex-col gap-4 sm:gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="min-w-0">
+          <p className="panel-tag text-primary mb-2 text-xs sm:text-sm">Theory view / {DOMAIN_SEQUENCE.find(item => item.id === domain)?.order}</p>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-light text-on-surface mb-2 sm:mb-3">{DOMAIN_SEQUENCE.find(item => item.id === domain)?.name}</h2>
+          <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">{DOMAIN_SEQUENCE.find(item => item.id === domain)?.summary}</p>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <button onClick={onBack} className="rounded-full border border-outline-variant bg-surface-bright/40 px-4 py-2 mono-label text-[11px] text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors">
-            Back to domains
+        <div className="flex flex-wrap gap-2 sm:gap-3">
+          <button onClick={onBack} className="rounded-full border border-outline-variant bg-surface-bright/40 px-3 sm:px-4 py-2 panel-tag text-xs text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors">
+            Back
           </button>
-          <button onClick={() => onOpenDomain(domain)} className="rounded-full border border-outline-variant bg-surface-bright/40 px-4 py-2 mono-label text-[11px] text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors">
-            Reopen current domain
+          <button onClick={() => onOpenDomain(domain)} className="rounded-full border border-outline-variant bg-surface-bright/40 px-3 sm:px-4 py-2 panel-tag text-xs text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors">
+            Refresh
           </button>
         </div>
       </header>
@@ -661,39 +668,39 @@ function InspectorPanel({ inspectorKey, onClose }: { inspectorKey: InspectorKey 
       <div className="fixed inset-0 bg-on-surface/10 backdrop-blur-sm z-[70] transition-opacity duration-300 opacity-100" onClick={onClose} />
 
       <aside className="fixed top-0 right-0 w-full md:w-[420px] h-full bg-surface-bright z-[80] border-l border-outline-variant elevation-soft flex flex-col transform transition-transform duration-300 md:rounded-l-[28px] translate-x-0">
-        <div className="w-full flex justify-between items-center py-4 px-6 border-b border-outline-variant/50">
-          <p className="panel-tag text-primary">{data.eyebrow}</p>
+        <div className="w-full flex justify-between items-center py-4 px-4 sm:px-6 border-b border-outline-variant/50">
+          <p className="panel-tag text-primary text-xs sm:text-sm">{data.eyebrow}</p>
           <button className="p-2 rounded-full hover:bg-surface-dim transition-colors text-on-surface-variant flex items-center justify-center w-10 h-10" onClick={onClose}>
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
 
-        <div className="px-8 py-8 flex-1 overflow-y-auto w-full">
-          <div className="flex justify-between items-center mb-8 border-b border-outline-variant/40 pb-6 gap-4">
-            <h2 className="domain-hero-title !text-4xl text-primary">{data.title}</h2>
-            <span className="material-symbols-outlined text-primary text-3xl">explore</span>
+        <div className="px-4 sm:px-6 md:px-8 py-6 sm:py-8 flex-1 overflow-y-auto w-full">
+          <div className="flex justify-between items-start mb-6 sm:mb-8 border-b border-outline-variant/40 pb-4 sm:pb-6 gap-4">
+            <h2 className="text-3xl sm:text-4xl font-display font-light text-primary">{data.title}</h2>
+            <span className="material-symbols-outlined text-primary text-2xl sm:text-3xl shrink-0">explore</span>
           </div>
 
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-6 sm:gap-10">
             <div>
-              <p className="body-text text-on-surface mb-5 text-[16px]">{data.summary}</p>
+              <p className="text-base sm:text-lg text-on-surface mb-4 leading-relaxed">{data.summary}</p>
             </div>
 
-            <div className="bg-surface-dim/50 p-6 rounded-2xl border border-outline-variant/40">
-              <h4 className="panel-tag text-on-surface mb-5">Key structure</h4>
-              <ul className="space-y-4">
+            <div className="bg-surface-dim/50 p-4 sm:p-6 rounded-lg sm:rounded-2xl border border-outline-variant/40">
+              <h4 className="panel-tag text-on-surface mb-4 text-xs sm:text-sm">Key structure</h4>
+              <ul className="space-y-3 sm:space-y-4">
                 {data.bullets.map(bullet => (
-                  <li key={bullet} className="flex items-start gap-4">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full shadow-sm mt-2.5 shrink-0" />
-                    <span className="body-text !text-[15px] text-on-surface-variant">{bullet}</span>
+                  <li key={bullet} className="flex items-start gap-3 sm:gap-4">
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full shadow-sm mt-2 shrink-0" />
+                    <span className="text-sm sm:text-base text-on-surface-variant leading-relaxed">{bullet}</span>
                   </li>
                 ))}
               </ul>
 
               {data.note && (
-                <div className="mt-8 pt-5 border-t border-outline-variant/30">
-                  <p className="mono-label text-[11px] text-primary mb-3">Continuity note</p>
-                  <p className="body-text text-on-surface-variant">{data.note}</p>
+                <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-outline-variant/30">
+                  <p className="panel-tag text-primary mb-2 text-xs sm:text-sm">Continuity note</p>
+                  <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed">{data.note}</p>
                 </div>
               )}
             </div>
