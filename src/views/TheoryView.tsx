@@ -10,7 +10,7 @@ export default function TheoryView({ domain, onBack, onOpenDomain }: { domain: D
   const openInspector = (key: InspectorKey) => setInspectorKey(key);
 
   return (
-    <div className="flex flex-col h-full relative pb-20">
+    <div className="flex flex-col h-full relative pb-nav-safe">
       <InspectorPanel inspectorKey={inspectorKey} onClose={() => setInspectorKey(null)} />
 
       <header className="mb-8 sm:mb-10 flex flex-col gap-4 sm:gap-6 md:flex-row md:items-end md:justify-between">

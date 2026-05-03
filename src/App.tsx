@@ -78,15 +78,15 @@ export default function App() {
           <div className="flex-1 relative flex flex-col h-full overflow-hidden bg-transparent">
             <header className="md:hidden w-full flex justify-between items-center px-6 h-16 bg-surface/80 backdrop-blur-xl border-b border-outline-variant z-50 shrink-0">
               <div className="flex items-center gap-4 min-w-0">
-                <button className="text-on-surface hover:opacity-80 transition-opacity" onClick={() => setCurrentView('domains')} aria-label="Open domain navigation">
+                <button type="button" className="text-on-surface hover:opacity-80 transition-opacity p-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary rounded" onClick={() => setCurrentView('domains')} aria-label="Go to domains">
                   <span className="material-symbols-outlined" aria-hidden="true">menu</span>
                 </button>
                 <span className="font-display text-lg font-medium tracking-widest text-on-surface whitespace-nowrap truncate uppercase">
                   {currentView === 'settings' ? 'Settings' : currentView === 'theory' ? DOMAIN_SEQUENCE.find(domain => domain.id === selectedDomain)?.name ?? 'Psyche Map' : 'Psyche Map'}
                 </span>
               </div>
-              <button className="text-on-surface hover:bg-surface-dim transition-colors p-2 rounded-lg flex items-center justify-center" onClick={() => setCurrentView('settings')} aria-label="Open settings">
-                <span className="material-symbols-outlined" aria-hidden="true">search</span>
+              <button type="button" className="text-on-surface hover:bg-surface-dim transition-colors p-2 rounded-lg flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary" onClick={() => setCurrentView('settings')} aria-label="Open settings">
+                <span className="material-symbols-outlined" aria-hidden="true">settings</span>
               </button>
             </header>
 
@@ -99,11 +99,11 @@ export default function App() {
             </main>
           </div>
 
-          <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-20 bg-surface/85 backdrop-blur-xl border-t border-outline-variant elevation-soft">
-            <BottomNavItem icon="auto_stories" label="Archive" active={false} onClick={() => setCurrentView('encyclopedia')} />
+          <nav aria-label="Main navigation" className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 bg-surface/85 backdrop-blur-xl border-t border-outline-variant elevation-soft" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)', minHeight: '4rem' }}>
+            <BottomNavItem icon="auto_stories" label="About" active={false} onClick={() => setCurrentView('encyclopedia')} />
             <BottomNavItem icon="map" label="Domains" active={currentView === 'domains'} onClick={() => setCurrentView('domains')} />
-            <BottomNavItem icon="schema" label="Theory" active={currentView === 'theory'} onClick={() => setCurrentView('theory')} />
-            <BottomNavItem icon="person" label="Settings" active={currentView === 'settings'} onClick={() => setCurrentView('settings')} />
+            <BottomNavItem icon="schema" label="Theory" active={currentView === 'theory'} onClick={() => { if (currentView !== 'theory') openDomain(selectedDomain); }} />
+            <BottomNavItem icon="settings" label="Settings" active={currentView === 'settings'} onClick={() => setCurrentView('settings')} />
           </nav>
           <InstallPrompt />
           <UpdateNotification />

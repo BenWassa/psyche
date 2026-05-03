@@ -98,6 +98,16 @@ body {
   box-shadow: 0 12px 24px rgba(44, 44, 42, 0.06);
 }
 
+/* Safe-area bottom padding for bottom nav and scroll content clearance */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pb-nav-safe {
+  /* 80px nav height + safe area inset — keeps scroll content from hiding under the nav */
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+
 .interactive-node {
   background-color: var(--color-surface-bright);
   border: 1px solid var(--color-outline-variant);
