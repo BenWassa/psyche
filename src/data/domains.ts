@@ -58,9 +58,24 @@ export const DOMAIN_SEQUENCE: DomainMeta[] = [
 ];
 
 export const TRAIT_FACETS = {
-  openness: ['Intellect', 'Aesthetic Openness'],
-  conscientiousness: ['Industriousness', 'Orderliness'],
-  extraversion: ['Enthusiasm', 'Assertiveness'],
-  agreeableness: ['Compassion', 'Politeness'],
-  neuroticism: ['Withdrawal', 'Volatility'],
+  openness: [
+    { id: 'intellect', label: 'Intellect' },
+    { id: 'aesthetic-openness', label: 'Aesthetic Openness' },
+  ],
+  conscientiousness: [
+    { id: 'industriousness', label: 'Industriousness' },
+    { id: 'orderliness', label: 'Orderliness' },
+  ],
+  extraversion: [
+    { id: 'enthusiasm', label: 'Enthusiasm' },
+    { id: 'assertiveness', label: 'Assertiveness' },
+  ],
+  agreeableness: [
+    { id: 'compassion', label: 'Compassion' },
+    { id: 'politeness', label: 'Politeness' },
+  ],
+  neuroticism: [
+    { id: 'withdrawal', label: 'Withdrawal' },
+    { id: 'volatility', label: 'Volatility' },
+  ],
 } as const;

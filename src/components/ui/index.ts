@@ -1,2 +1,1 @@
-export { default as TheoryTileHeader } from './TheoryTileHeader';
-export { FacetPill, FacetPills } from './FacetPill';
+export { default as TheorySection, NodeChip, FlowArrow } from './TheorySection';

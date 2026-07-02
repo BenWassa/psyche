@@ -1,50 +1,32 @@
-import { useState, useEffect } from 'react';
-import { InstallPrompt, UpdateNotification, EvidenceCard } from '@/components';
+import { useState } from 'react';
+import { InstallPrompt, UpdateNotification } from '@/components';
 import { useServiceWorker } from '@/hooks';
-import type { ViewMode, DomainId, InspectorKey } from '@/types';
-import { DOMAIN_SEQUENCE, TRAIT_FACETS } from '@/data/domains';
-import INSPECTOR_COPY from '@/data/inspectorCopy';
-import { PersonalityTheory, CognitionTheory, MotivationTheory, RelationshipsTheory, EmotionTheory, SelfTheory } from '@/domains';
+import type { ViewMode, DomainId } from '@/types';
+import { DOMAIN_SEQUENCE } from '@/data/domains';
+import { getNode } from '@/data/content';
+import { SELF_LOCATION_STORAGE_KEY } from '@/components/SelfLocation';
 import { EncyclopediaView, DomainIndexView, TheoryView } from '@/views';
-import { TheoryTileHeader } from '@/components/ui';
-import { FacetPill, FacetPills } from '@/components/ui';
 import { SidebarItem, BottomNavItem } from '@/components/nav';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<ViewMode>('encyclopedia');
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  useServiceWorker();
-
   const [selectedDomain, setSelectedDomain] = useState<DomainId>('personality');
-
-  // Load theme from localStorage on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      applyTheme(savedTheme);
-    }
-  }, []);
-
-  // Apply theme to DOM
-  const applyTheme = (newTheme: 'light' | 'dark') => {
-    const root = document.documentElement;
-    if (newTheme === 'dark') {
-      root.setAttribute('data-theme', 'dark');
-    } else {
-      root.removeAttribute('data-theme');
-    }
-    localStorage.setItem('theme', newTheme);
-  };
-
-  const toggleTheme = (newTheme: 'light' | 'dark') => {
-    setTheme(newTheme);
-    applyTheme(newTheme);
-  };
+  const [inspectorKey, setInspectorKey] = useState<string | null>(null);
+  useServiceWorker();
 
   const openDomain = (domain: DomainId) => {
     setSelectedDomain(domain);
+    setInspectorKey(null);
     setCurrentView('theory');
+  };
+
+  // Bridge navigation: jump to any node's domain and open its inspector.
+  const navigateToNode = (nodeId: string) => {
+    const node = getNode(nodeId);
+    if (!node) return;
+    setSelectedDomain(node.domain);
+    setCurrentView('theory');
+    setInspectorKey(nodeId);
   };
 
   return (
@@ -59,7 +41,7 @@ export default function App() {
               <h1 className="text-xl font-medium text-on-surface tracking-[0.22em] font-display uppercase">Psyche Map</h1>
               <p className="panel-tag text-on-surface-variant mt-3">Editorial atlas</p>
             </div>
-            <div className="px-6 pt-5 pb-2 mono-label text-[11px] text-on-surface-variant tracking-[0.18em]">Domains</div>
+            <div className="px-6 pt-5 pb-2 mono-label text-[11px] text-on-surface-variant tracking-[0.18em]">Domains · in sequence</div>
             <nav className="flex-1 px-4 space-y-1.5 overflow-y-auto pb-6">
               {DOMAIN_SEQUENCE.map(domain => (
                 <SidebarItem
@@ -93,8 +75,18 @@ export default function App() {
             <main className="flex-1 overflow-y-auto p-5 sm:p-8 md:p-10 lg:p-12 pb-nav-safe">
               <div className={`${currentView === 'settings' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto`}>
                 {currentView === 'domains' && <DomainIndexView onOpenDomain={openDomain} selectedDomain={selectedDomain} />}
-                {currentView === 'theory' && <TheoryView domain={selectedDomain} onBack={() => setCurrentView('domains')} onOpenDomain={openDomain} />}
-                {currentView === 'settings' && <SettingsView theme={theme} onThemeChange={toggleTheme} />}
+                {currentView === 'theory' && (
+                  <TheoryView
+                    domain={selectedDomain}
+                    inspectorKey={inspectorKey}
+                    onInspect={setInspectorKey}
+                    onCloseInspector={() => setInspectorKey(null)}
+                    onNavigateNode={navigateToNode}
+                    onBack={() => setCurrentView('domains')}
+                    onOpenDomain={openDomain}
+                  />
+                )}
+                {currentView === 'settings' && <SettingsView />}
               </div>
             </main>
           </div>
@@ -113,12 +105,15 @@ export default function App() {
   );
 }
 
-// Nav atoms moved to src/components/nav
-// Views moved to src/views
+function SettingsView() {
+  const [cleared, setCleared] = useState(false);
+  const hasScores = typeof window !== 'undefined' && localStorage.getItem(SELF_LOCATION_STORAGE_KEY) !== null;
 
-// UI atoms moved to src/components/ui
+  const clearScores = () => {
+    localStorage.removeItem(SELF_LOCATION_STORAGE_KEY);
+    setCleared(true);
+  };
 
-function SettingsView({ theme, onThemeChange }: { theme: 'light' | 'dark'; onThemeChange: (t: 'light' | 'dark') => void }) {
   return (
     <div className="flex flex-col mb-12 w-full">
       <div className="mb-8 pb-6 border-b border-outline-variant/50">
@@ -127,84 +122,28 @@ function SettingsView({ theme, onThemeChange }: { theme: 'light' | 'dark'; onThe
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm lg:col-span-2">
-          <h2 className="panel-tag text-primary mb-5">Appearance</h2>
-          <div className="space-y-5">
-            <ToggleRow title="Dark vs Light Mode" desc="Adjust contrast and background tone" options={['Light', 'Dark']} icons={['light_mode', 'dark_mode']} active={theme === 'light' ? 'Light' : 'Dark'} onSelect={(opt) => onThemeChange(opt === 'Light' ? 'light' : 'dark')} noBorder />
-          </div>
-        </section>
-
         <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
-          <h2 className="panel-tag text-primary mb-5">Navigation</h2>
-          <div className="divide-y divide-outline-variant/30">
-            <SwitchRow title="Sequential Flow" desc="Enable next/prev article links" active={true} noBorder />
-            <SwitchRow title="Auto-Hide Inspector" desc="Dismiss panels on scroll" active={false} noBorder />
-          </div>
-        </section>
-
-        <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
-          <h2 className="panel-tag text-primary mb-5">Account</h2>
-          <div className="divide-y divide-outline-variant/30">
-            <ActionRow title="Manage Subscription" icon="arrow_forward" noBorder />
-            <ActionRow title="Export Library" icon="download" noBorder />
-            <ActionRow title="Sign Out" icon="logout" danger noBorder />
-          </div>
-        </section>
-      </div>
-    </div>
-  );
-}
-
-function ToggleRow({ title, desc, options, icons, active, onSelect, noBorder }: { title: string; desc: string; options: string[]; icons?: string[]; active: string; onSelect?: (opt: string) => void; noBorder?: boolean }) {
-  return (
-    <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-8 py-5 sm:py-6 ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
-      <div className="flex-1">
-        <p className="text-[15px] text-on-surface font-medium leading-tight">{title}</p>
-        <p className="body-text !text-[14px] text-on-surface-variant mt-2">{desc}</p>
-      </div>
-      <div className="flex w-full sm:w-auto bg-surface-dim rounded-lg p-1.5 border border-outline-variant/50 shrink-0 sm:min-w-max gap-1.5 justify-between sm:justify-normal">
-        {options.map((opt, idx) => (
+          <h2 className="panel-tag text-primary mb-4">Your data</h2>
+          <p className="body-text !text-[14px] text-on-surface-variant mb-5">
+            Psyche Map stores nothing on a server. If you entered Big Five scores on the Personality page, they live only in this browser.
+          </p>
           <button
-            key={opt}
             type="button"
-            aria-pressed={opt === active}
-            aria-label={`${title}: ${opt}`}
-            onClick={() => onSelect?.(opt)}
-            className={`flex items-center justify-center gap-2 px-5 py-3 rounded-md transition-all flex-1 sm:flex-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-primary ${opt === active ? 'bg-surface-bright text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
+            onClick={clearScores}
+            disabled={cleared || !hasScores}
+            className="rounded-full border border-outline-variant bg-surface-bright/40 px-4 py-2 panel-tag text-xs text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors disabled:opacity-50 disabled:hover:border-outline-variant"
           >
-            {icons && icons[idx] && <span className="material-symbols-outlined text-[20px]">{icons[idx]}</span>}
-            {!icons && <span className="mono-label text-[12px] font-medium">{opt}</span>}
+            {cleared ? 'Scores cleared' : hasScores ? 'Clear saved trait scores' : 'No saved scores'}
           </button>
-        ))}
+        </section>
+
+        <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
+          <h2 className="panel-tag text-primary mb-4">About</h2>
+          <p className="body-text !text-[14px] text-on-surface-variant">
+            A psychology literacy encyclopedia — six domains, deliberately thin. Theories are rendered in their honest structural form, evidence quality is always visible, and the recommended reading order runs Personality → Cognition → Motivation → Relationships → Emotion → Self &amp; Identity. It is a map, not a substitute for the territory.
+          </p>
+        </section>
       </div>
     </div>
   );
 }
-
-function SwitchRow({ title, desc, active, noBorder }: { title: string; desc: string; active: boolean; noBorder?: boolean }) {
-  return (
-    <div className={`flex items-center justify-between py-4 gap-6 ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
-      <div>
-        <p className="text-[15px] text-on-surface font-medium">{title}</p>
-        <p className="body-text !text-[14px] text-on-surface-variant mt-1">{desc}</p>
-      </div>
-      <button
-        role="switch"
-        aria-checked={active}
-        className={`w-12 h-6 rounded-full relative transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${active ? 'bg-primary' : 'bg-outline-variant'}`}
-      >
-        <div className={`absolute top-1 w-4 h-4 rounded-full bg-surface-bright shadow-sm transition-all duration-300 ease-in-out ${active ? 'left-7' : 'left-1'}`} aria-hidden="true" />
-      </button>
-    </div>
-  );
-}
-
-function ActionRow({ title, icon, danger, noBorder }: { title: string; icon: string; danger?: boolean; noBorder?: boolean }) {
-  return (
-    <button type="button" className={`w-full flex items-center justify-between py-4 cursor-pointer group rounded-lg px-2 -mx-2 transition-colors hover:bg-surface-dim ${noBorder ? '' : 'border-b border-outline-variant/30'}`}>
-      <p className={`font-body text-[15px] font-medium transition-colors ${danger ? 'text-primary' : 'text-on-surface group-hover:text-primary'}`}>{title}</p>
-      <span className={`material-symbols-outlined text-[20px] transition-colors ${danger ? 'text-primary' : 'text-outline group-hover:text-primary'}`}>{icon}</span>
-    </button>
-  );
-}
-
