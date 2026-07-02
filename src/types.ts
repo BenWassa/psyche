@@ -12,4 +12,37 @@ export type DomainMeta = {
   structure: string;
 };
 
-export type { InspectorKey } from '@/data/inspectorCopy';
+export type Tier = 'cornerstone' | 'include' | 'revised';
+
+export type EvidenceStatus = 'superseded' | 'revised' | 'contested';
+
+export type Bridge = {
+  target: string;
+  description: string;
+};
+
+export type EvidenceDetail = {
+  status: EvidenceStatus;
+  year?: string;
+  knownFor: string;
+  survives?: string;
+  shows: string;
+  instead: string;
+};
+
+export type ContentNode = {
+  id: string;
+  domain: DomainId;
+  theory: string;
+  title: string;
+  tier: Tier;
+  grammar: string;
+  summary: string;
+  bullets: string[];
+  note?: string;
+  bridges: Bridge[];
+  sources: string[];
+  evidence?: EvidenceDetail;
+};
+
+export type InspectorKey = string;

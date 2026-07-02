@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300..900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Newsreader:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300..900&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -23,9 +23,9 @@
   --color-domain-relationships: #c28f8f;
 
   --font-display: "Fraunces", serif;
-  --font-body: "Newsreader", serif;
+  --font-body: "Inter", sans-serif;
   --font-mono: "DM Mono", monospace;
-  --font-heading: "Merriweather", serif;
+  --font-heading: "Fraunces", serif;
 
   --color-background: var(--color-surface);
   --color-on-background: var(--color-on-surface);
@@ -33,37 +33,14 @@
   --color-on-secondary: #ffffff;
 }
 
-/* Dark theme variant */
-[data-theme="dark"] {
-  --color-surface: #0a0f1e;
-  --color-surface-dim: #111a31;
-  --color-surface-bright: #15213a;
+/* Light surfaces only — see CLAUDE.md closed decisions. */
 
-  --color-on-surface: #f2eadb;
-  --color-on-surface-variant: #b7b0a1;
-
-  --color-outline: #56607d;
-  --color-outline-variant: #22304f;
-
-  --color-primary: #c49a3c;
-  --color-primary-container: rgba(196, 154, 60, 0.16);
-  --color-on-primary-container: #f6e7bf;
-
-  --color-domain-cognition: #6f89c8;
-  --color-domain-self: #7db08e;
-  --color-domain-motivation: #d3a85a;
-  --color-domain-relationships: #d08c8c;
-}
-
-/* Smooth theme transition, respecting reduced-motion */
-html {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    transition: none;
-  }
+/* Self-location trait sliders */
+.trait-slider {
+  accent-color: var(--color-primary);
+  height: 4px;
+  cursor: pointer;
+  min-width: 120px;
 }
 
 html,
