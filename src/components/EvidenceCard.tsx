@@ -7,6 +7,7 @@ type EvidenceCardProps = {
   whatIsWrong: string;
   useInstead: string;
   onClick?: () => void;
+  read?: boolean;
 };
 
 const STATUS_LABEL: Record<EvidenceCardProps['status'], string> = {
@@ -15,7 +16,7 @@ const STATUS_LABEL: Record<EvidenceCardProps['status'], string> = {
   contested: 'Actively Contested',
 };
 
-export function EvidenceCard({ title, year, status, whatPeopleKnow, whatSurvives, whatIsWrong, useInstead, onClick }: EvidenceCardProps) {
+export function EvidenceCard({ title, year, status, whatPeopleKnow, whatSurvives, whatIsWrong, useInstead, onClick, read = false }: EvidenceCardProps) {
   return (
     <div
       onClick={onClick}
@@ -23,7 +24,14 @@ export function EvidenceCard({ title, year, status, whatPeopleKnow, whatSurvives
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <span className="panel-tag text-primary block mb-2">Popular / Revised</span>
+          <span className="panel-tag text-primary mb-2 flex items-center gap-2">
+            Popular / Revised
+            {read && (
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/80" title="Read">
+                <span className="sr-only">Read</span>
+              </span>
+            )}
+          </span>
           <h3 className="node-title text-on-surface">
             {title}
             {year && <span className="text-on-surface-variant text-[16px] font-normal ml-2">({year})</span>}

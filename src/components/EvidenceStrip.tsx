@@ -1,10 +1,12 @@
 import { EvidenceCard } from './EvidenceCard';
 import { evidenceNodesForDomain } from '@/data/content';
+import { useProgress } from '@/hooks/useProgress';
 import type { DomainId } from '@/types';
 
 /** Renders every popular-but-revised entry for a domain as evidence cards. */
 export function EvidenceStrip({ domain, onInspect }: { domain: DomainId; onInspect: (key: string) => void }) {
   const nodes = evidenceNodesForDomain(domain);
+  const progress = useProgress();
   if (nodes.length === 0) return null;
 
   return (
@@ -24,6 +26,7 @@ export function EvidenceStrip({ domain, onInspect }: { domain: DomainId; onInspe
               whatSurvives={evidence.survives}
               whatIsWrong={evidence.shows}
               useInstead={evidence.instead}
+              read={progress.read[node.id] !== undefined}
               onClick={() => onInspect(node.id)}
             />
           );

@@ -1,6 +1,9 @@
 import React from 'react';
 import type { DomainId } from '@/types';
 import { DOMAIN_SEQUENCE } from '@/data/domains';
+import { useProgress } from '@/hooks/useProgress';
+import { domainCoverage } from '@/lib/progress';
+import { ProgressBar } from '@/components/progress';
 
 export default function DomainIndexView({ selectedDomain, onOpenDomain }: { selectedDomain: DomainId; onOpenDomain: (domain: DomainId) => void }) {
   return (
@@ -16,6 +19,7 @@ export default function DomainIndexView({ selectedDomain, onOpenDomain }: { sele
         {DOMAIN_SEQUENCE.map((domain, index) => (
           <DomainCard
             key={domain.id}
+            id={domain.id}
             order={domain.order}
             title={domain.name}
             subtitle={domain.subtitle}
@@ -32,7 +36,10 @@ export default function DomainIndexView({ selectedDomain, onOpenDomain }: { sele
   );
 }
 
-function DomainCard({ order, title, subtitle, summary, structure, accent, active, onClick, span = '' }: { order: string; title: string; subtitle: string; summary: string; structure: string; accent: string; active: boolean; onClick: () => void; span?: string }) {
+function DomainCard({ id, order, title, subtitle, summary, structure, accent, active, onClick, span = '' }: { id: DomainId; order: string; title: string; subtitle: string; summary: string; structure: string; accent: string; active: boolean; onClick: () => void; span?: string }) {
+  const progress = useProgress();
+  const coverage = domainCoverage(progress, id);
+
   return (
     <button
       onClick={onClick}
@@ -47,6 +54,14 @@ function DomainCard({ order, title, subtitle, summary, structure, accent, active
         <p className={`panel-tag text-xs ${accent}`}>{subtitle}</p>
         <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl line-clamp-2">{summary}</p>
         <p className="panel-tag text-xs text-primary mt-1 sm:mt-2">{structure}</p>
+        {coverage.total > 0 && (
+          <div className="flex items-center gap-3 mt-1">
+            <ProgressBar pct={coverage.pct} label={`${coverage.read} of ${coverage.total} entries read`} className="flex-1 max-w-[160px]" />
+            <span className="mono-label text-[10px] text-on-surface-variant shrink-0">
+              {coverage.complete ? 'Charted ✓' : `${coverage.read} / ${coverage.total} read`}
+            </span>
+          </div>
+        )}
       </div>
     </button>
   );

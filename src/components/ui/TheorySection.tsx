@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Tier } from '@/types';
+import { ReadDot } from '@/components/progress';
 
 /**
  * Section wrapper for one theory's visual grammar.
@@ -38,6 +39,7 @@ export default function TheorySection({
             {tier === 'include' && (
               <span className="panel-tag text-[9px] px-2 py-0.5 rounded-full border border-outline-variant text-on-surface-variant">Include</span>
             )}
+            <ReadDot nodeId={nodeId} />
           </div>
           <h3 className="node-title text-on-surface text-2xl group-hover:text-primary transition-colors leading-tight">{title}</h3>
           <p className="body-text text-on-surface-variant mt-2 text-[15px]">{subtitle}</p>
@@ -76,8 +78,16 @@ export function NodeChip({
           : 'border-outline-variant bg-surface-bright/80 hover:border-primary'
       } ${className}`}
     >
-      {tag && <p className={`panel-tag mb-1.5 ${emphasis ? 'text-primary' : 'text-on-surface-variant'}`}>{tag}</p>}
-      <p className="body-text !text-[15px] text-on-surface group-hover/chip:text-primary transition-colors">{label}</p>
+      {tag && (
+        <p className={`panel-tag mb-1.5 flex items-center gap-2 ${emphasis ? 'text-primary' : 'text-on-surface-variant'}`}>
+          {tag}
+          <ReadDot nodeId={nodeId} />
+        </p>
+      )}
+      <p className="body-text !text-[15px] text-on-surface group-hover/chip:text-primary transition-colors">
+        {label}
+        {!tag && <ReadDot nodeId={nodeId} className="ml-2 align-middle" />}
+      </p>
       {detail && <p className="body-text !text-[13px] text-on-surface-variant mt-1">{detail}</p>}
     </button>
   );

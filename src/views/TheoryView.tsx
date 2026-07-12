@@ -2,6 +2,9 @@ import React from 'react';
 import type { ContentNode, DomainId, Tier } from '@/types';
 import { DOMAIN_SEQUENCE } from '@/data/domains';
 import { getNode } from '@/data/content';
+import { useProgress } from '@/hooks/useProgress';
+import { domainCoverage, markBridgeCrossed } from '@/lib/progress';
+import { ProgressBar, ReadDot } from '@/components/progress';
 import { PersonalityTheory, CognitionTheory, MotivationTheory, RelationshipsTheory, EmotionTheory, SelfTheory } from '@/domains';
 
 type TheoryViewProps = {
@@ -28,10 +31,11 @@ export default function TheoryView({ domain, inspectorKey, onInspect, onCloseIns
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-light text-on-surface mb-2 sm:mb-3">{meta?.name}</h2>
           <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">{meta?.summary}</p>
         </div>
-        <div className="flex flex-wrap gap-2 sm:gap-3">
+        <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
           <button onClick={onBack} className="rounded-full border border-outline-variant bg-surface-bright/40 px-3 sm:px-4 py-2 panel-tag text-xs text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors">
             All domains
           </button>
+          <DomainCoverageTag domain={domain} />
         </div>
       </header>
 
@@ -63,6 +67,22 @@ export default function TheoryView({ domain, inspectorKey, onInspect, onCloseIns
           </p>
         )}
       </footer>
+    </div>
+  );
+}
+
+/** Quiet per-domain coverage readout for the theory header. */
+function DomainCoverageTag({ domain }: { domain: DomainId }) {
+  const progress = useProgress();
+  const summary = domainCoverage(progress, domain);
+  if (summary.total === 0) return null;
+
+  return (
+    <div className="w-40">
+      <p className="mono-label text-[10px] text-on-surface-variant mb-1.5 text-left md:text-right">
+        {summary.complete ? 'Domain charted ✓' : `${summary.read} of ${summary.total} entries read`}
+      </p>
+      <ProgressBar pct={summary.pct} label={`${summary.read} of ${summary.total} entries read in this domain`} />
     </div>
   );
 }
@@ -150,11 +170,17 @@ function InspectorPanel({ inspectorKey, onClose, onNavigateNode }: { inspectorKe
                   {bridgeTargets.map(({ bridge, target }) => (
                     <li key={bridge.target}>
                       <button
-                        onClick={() => onNavigateNode(target.id)}
+                        onClick={() => {
+                          markBridgeCrossed(node.id, target.id);
+                          onNavigateNode(target.id);
+                        }}
                         className="w-full text-left rounded-xl border border-outline-variant bg-surface-bright/60 px-4 py-3 hover:border-primary transition-colors group"
                       >
                         <span className="flex items-center justify-between gap-3">
-                          <span className="font-display text-[15px] text-on-surface group-hover:text-primary transition-colors">{target.title}</span>
+                          <span className="font-display text-[15px] text-on-surface group-hover:text-primary transition-colors inline-flex items-center gap-2">
+                            {target.title}
+                            <ReadDot nodeId={target.id} />
+                          </span>
                           {target.domain !== node.domain && (
                             <span className="mono-label text-[9px] text-on-surface-variant shrink-0">
                               {DOMAIN_SEQUENCE.find(d => d.id === target.domain)?.order} · {target.domain}
