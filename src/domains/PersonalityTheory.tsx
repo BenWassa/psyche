@@ -1,6 +1,8 @@
 import React from 'react';
 import TheorySection from '@/components/ui/TheorySection';
 import { EvidenceStrip, SelfLocation } from '@/components';
+import { ReadDot } from '@/components/progress';
+import { useProgress } from '@/hooks/useProgress';
 import { TRAIT_FACETS } from '@/data/domains';
 
 const TRAITS = [
@@ -12,6 +14,7 @@ const TRAITS = [
 ] as const;
 
 export default function PersonalityTheory({ onInspect }: { onInspect: (key: string) => void }) {
+  const progress = useProgress();
   return (
     <div className="space-y-6">
       <TheorySection
@@ -28,7 +31,10 @@ export default function PersonalityTheory({ onInspect }: { onInspect: (key: stri
             <div key={trait.id} className={`interactive-node p-6 group relative ${trait.span}`}>
               <button onClick={() => onInspect(trait.id)} className="w-full text-left">
                 <div className="flex items-center justify-between gap-4 mb-2">
-                  <p className="panel-tag text-primary">{trait.index}</p>
+                  <span className="flex items-center gap-2">
+                    <p className="panel-tag text-primary">{trait.index}</p>
+                    <ReadDot nodeId={trait.id} />
+                  </span>
                   <span className="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]" aria-hidden="true">north_east</span>
                 </div>
                 <h3 className="node-title text-on-surface text-2xl group-hover:text-primary transition-colors leading-tight">{trait.title}</h3>
@@ -39,9 +45,14 @@ export default function PersonalityTheory({ onInspect }: { onInspect: (key: stri
                   <button
                     key={facet.id}
                     onClick={() => onInspect(facet.id)}
-                    className="inline-flex items-center justify-center rounded-full border border-outline-variant bg-surface-dim/35 px-2.5 py-1 text-[11px] mono-label text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-full border border-outline-variant bg-surface-dim/35 px-2.5 py-1 text-[11px] mono-label text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors"
                   >
                     {facet.label}
+                    {progress.read[facet.id] !== undefined && (
+                      <span className="inline-block w-1 h-1 rounded-full bg-primary/80" title="Read">
+                        <span className="sr-only">Read</span>
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>

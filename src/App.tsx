@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InstallPrompt, UpdateNotification } from '@/components';
-import { useServiceWorker } from '@/hooks';
+import { useServiceWorker, useProgress } from '@/hooks';
 import type { ViewMode, DomainId } from '@/types';
 import { DOMAIN_SEQUENCE } from '@/data/domains';
 import { getNode } from '@/data/content';
 import { SELF_LOCATION_STORAGE_KEY } from '@/components/SelfLocation';
-import { EncyclopediaView, DomainIndexView, TheoryView } from '@/views';
+import { markNodeRead, recordVisit, overallCoverage, clearProgress, hasProgress } from '@/lib/progress';
+import { ProgressRing } from '@/components/progress';
+import { EncyclopediaView, DomainIndexView, TheoryView, ProgressView } from '@/views';
 import { SidebarItem, BottomNavItem } from '@/components/nav';
 
 export default function App() {
@@ -14,16 +16,27 @@ export default function App() {
   const [inspectorKey, setInspectorKey] = useState<string | null>(null);
   useServiceWorker();
 
+  useEffect(() => {
+    recordVisit();
+  }, []);
+
   const openDomain = (domain: DomainId) => {
     setSelectedDomain(domain);
     setInspectorKey(null);
     setCurrentView('theory');
   };
 
+  // Opening a node's inspector is what counts as "reading" it.
+  const openInspector = (nodeId: string) => {
+    markNodeRead(nodeId);
+    setInspectorKey(nodeId);
+  };
+
   // Bridge navigation: jump to any node's domain and open its inspector.
   const navigateToNode = (nodeId: string) => {
     const node = getNode(nodeId);
     if (!node) return;
+    markNodeRead(nodeId);
     setSelectedDomain(node.domain);
     setCurrentView('theory');
     setInspectorKey(nodeId);
@@ -49,12 +62,15 @@ export default function App() {
                   order={domain.order}
                   label={domain.name}
                   subtitle={domain.subtitle}
-                  active={selectedDomain === domain.id && currentView !== 'settings'}
+                  active={selectedDomain === domain.id && currentView !== 'settings' && currentView !== 'progress'}
                   accent={domain.accent}
                   onClick={() => openDomain(domain.id)}
                 />
               ))}
             </nav>
+            <div className="px-4 pb-5 pt-4 border-t border-outline-variant/70">
+              <FieldNotesLink active={currentView === 'progress'} onClick={() => setCurrentView('progress')} />
+            </div>
           </aside>
 
           <div className="flex-1 relative flex flex-col h-full overflow-hidden bg-transparent">
@@ -64,7 +80,7 @@ export default function App() {
                   <span className="material-symbols-outlined" aria-hidden="true">menu</span>
                 </button>
                 <span className="font-display text-lg font-medium tracking-widest text-on-surface whitespace-nowrap truncate uppercase">
-                  {currentView === 'settings' ? 'Settings' : currentView === 'theory' ? DOMAIN_SEQUENCE.find(domain => domain.id === selectedDomain)?.name ?? 'Psyche Map' : 'Psyche Map'}
+                  {currentView === 'settings' ? 'Settings' : currentView === 'progress' ? 'Field Notes' : currentView === 'theory' ? DOMAIN_SEQUENCE.find(domain => domain.id === selectedDomain)?.name ?? 'Psyche Map' : 'Psyche Map'}
                 </span>
               </div>
               <button type="button" className="text-on-surface hover:bg-surface-dim transition-colors p-2 rounded-lg flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary" onClick={() => setCurrentView('settings')} aria-label="Open settings">
@@ -73,13 +89,14 @@ export default function App() {
             </header>
 
             <main className="flex-1 overflow-y-auto p-5 sm:p-8 md:p-10 lg:p-12 pb-nav-safe">
-              <div className={`${currentView === 'settings' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto`}>
+              <div className={`${currentView === 'settings' ? 'max-w-4xl' : currentView === 'progress' ? 'max-w-5xl' : 'max-w-6xl'} mx-auto`}>
                 {currentView === 'domains' && <DomainIndexView onOpenDomain={openDomain} selectedDomain={selectedDomain} />}
+                {currentView === 'progress' && <ProgressView onOpenDomain={openDomain} />}
                 {currentView === 'theory' && (
                   <TheoryView
                     domain={selectedDomain}
                     inspectorKey={inspectorKey}
-                    onInspect={setInspectorKey}
+                    onInspect={openInspector}
                     onCloseInspector={() => setInspectorKey(null)}
                     onNavigateNode={navigateToNode}
                     onBack={() => setCurrentView('domains')}
@@ -95,6 +112,7 @@ export default function App() {
             <BottomNavItem icon="auto_stories" label="About" active={false} onClick={() => setCurrentView('encyclopedia')} />
             <BottomNavItem icon="map" label="Domains" active={currentView === 'domains'} onClick={() => setCurrentView('domains')} />
             <BottomNavItem icon="schema" label="Theory" active={currentView === 'theory'} onClick={() => { if (currentView !== 'theory') openDomain(selectedDomain); }} />
+            <BottomNavItem icon="route" label="Notes" active={currentView === 'progress'} onClick={() => setCurrentView('progress')} />
             <BottomNavItem icon="settings" label="Settings" active={currentView === 'settings'} onClick={() => setCurrentView('settings')} />
           </nav>
           <InstallPrompt />
@@ -105,13 +123,44 @@ export default function App() {
   );
 }
 
+/** Sidebar footer: overall coverage ring + entry point to the progress view. */
+function FieldNotesLink({ active, onClick }: { active: boolean; onClick: () => void }) {
+  const progress = useProgress();
+  const overall = overallCoverage(progress);
+
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full flex items-center gap-3.5 px-4 py-3 rounded-xl text-left transition-all border ${
+        active ? 'bg-primary-container/20 border-primary/40 shadow-lg shadow-black/15' : 'bg-surface-bright/40 border-outline-variant/60 hover:border-primary/40 hover:bg-surface-bright/65'
+      }`}
+    >
+      <ProgressRing pct={overall.pct} size={38} stroke={3.5} showLabel={false} />
+      <span className="flex-1 min-w-0">
+        <span className={`block text-[14px] leading-5 ${active ? 'text-on-surface' : 'text-on-surface-variant'}`}>Field Notes</span>
+        <span className={`block text-[11px] mt-1 mono-label ${active ? 'text-primary' : 'text-on-surface-variant opacity-75'}`}>
+          {overall.read} / {overall.total} entries · {overall.pct}%
+        </span>
+      </span>
+    </button>
+  );
+}
+
 function SettingsView() {
   const [cleared, setCleared] = useState(false);
+  const [notesCleared, setNotesCleared] = useState(false);
+  const progress = useProgress();
   const hasScores = typeof window !== 'undefined' && localStorage.getItem(SELF_LOCATION_STORAGE_KEY) !== null;
+  const hasNotes = hasProgress(progress);
 
   const clearScores = () => {
     localStorage.removeItem(SELF_LOCATION_STORAGE_KEY);
     setCleared(true);
+  };
+
+  const clearNotes = () => {
+    clearProgress();
+    setNotesCleared(true);
   };
 
   return (
@@ -125,16 +174,26 @@ function SettingsView() {
         <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm">
           <h2 className="panel-tag text-primary mb-4">Your data</h2>
           <p className="body-text !text-[14px] text-on-surface-variant mb-5">
-            Psyche Map stores nothing on a server. If you entered Big Five scores on the Personality page, they live only in this browser.
+            Psyche Map stores nothing on a server. Big Five scores entered on the Personality page and your reading progress (field notes) live only in this browser.
           </p>
-          <button
-            type="button"
-            onClick={clearScores}
-            disabled={cleared || !hasScores}
-            className="rounded-full border border-outline-variant bg-surface-bright/40 px-4 py-2 panel-tag text-xs text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors disabled:opacity-50 disabled:hover:border-outline-variant"
-          >
-            {cleared ? 'Scores cleared' : hasScores ? 'Clear saved trait scores' : 'No saved scores'}
-          </button>
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={clearScores}
+              disabled={cleared || !hasScores}
+              className="rounded-full border border-outline-variant bg-surface-bright/40 px-4 py-2 panel-tag text-xs text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors disabled:opacity-50 disabled:hover:border-outline-variant"
+            >
+              {cleared ? 'Scores cleared' : hasScores ? 'Clear saved trait scores' : 'No saved scores'}
+            </button>
+            <button
+              type="button"
+              onClick={clearNotes}
+              disabled={notesCleared || !hasNotes}
+              className="rounded-full border border-outline-variant bg-surface-bright/40 px-4 py-2 panel-tag text-xs text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors disabled:opacity-50 disabled:hover:border-outline-variant"
+            >
+              {notesCleared ? 'Field notes cleared' : hasNotes ? 'Clear reading progress' : 'No reading progress'}
+            </button>
+          </div>
         </section>
 
         <section className="bg-surface-bright/35 p-6 rounded-2xl border border-outline-variant/60 shadow-sm">

@@ -1,4 +1,4 @@
-export type ViewMode = 'encyclopedia' | 'domains' | 'theory' | 'settings';
+export type ViewMode = 'encyclopedia' | 'domains' | 'theory' | 'progress' | 'settings';
 
 export type DomainId = 'personality' | 'cognition' | 'motivation' | 'relationships' | 'emotion' | 'self';
 
